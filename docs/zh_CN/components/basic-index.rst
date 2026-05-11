@@ -3,7 +3,7 @@
 
 .. toctree::
    :hidden:
-   :maxdepth: 1
+   :maxdepth: 2
    :titlesonly:
 
    Lierda LTE-EC71X OpenCPU 数据拨号开发指导_Rev2.0
