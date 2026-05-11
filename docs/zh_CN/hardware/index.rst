@@ -14,7 +14,7 @@
 | NT26F6D0系列硬件手册 | NT26F6D0系列硬件手册V1.7.pdf |
 | NT26F6D0系列硬件设计指导 | NT26F6D0系列硬件设计指导.pdf  |
 | NT26F6D0系列管脚复用映射表 | NT26F6D0系列模组管脚映射表20251204.xlsx |
-| 参考设计(pads/pdf/.txt) | NT26F6D0&EU&LA&NA&GL参考设计20260114<br>Air8000D&Air8000DB参考设计20260114 |
+| 参考设计(pads/pdf/.txt) | NT26F6D0&EU&LA&NA&GL参考设计20260114<br>NT26F6D0参考设计20260114 |
 | 原理图和PCB封装(PADS/AD/立创) | NT26F6D0&EU&LA&NA&GL.rar |
 | NT26F6D0系列3D 封装 | NT26F6D0.step |
 
