@@ -107,7 +107,7 @@ html_logo = "../_static/logo.svg"
 # 添加以下内容来限制侧边栏深度
 html_theme_options = {
     "collapse_navigation": True,
-    "navigation_depth": 4,  # 关键修改：从 2 改为 4
+    "navigation_depth": 3,  # 关键修改：从 2 改为 3
     "titles_only": True,  # 侧边栏仅显示文档标题
     "logo_only": True,  # 只显示 logo，不显示项目标题
 }
