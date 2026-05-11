@@ -148,15 +148,15 @@ html_js_files = [
 def _load_model_switcher_config():
     """Return the model switcher configuration injected into each HTML page."""
     return {
-        "currentModel": "EC71X",
+        "currentModel": "LSD_LTE_OPENSDK",
         # When true, switching models keeps the current language and page path.
         # Example: https://ec71x.example.com/zh_CN/about.html ->
         # https://ec716s.example.com/zh_CN/about.html
         "preservePath": True,
         "models": [
             {
-                "name": "EC71X",
-                "label": "EC71X",
+                "name": "LSD_LTE_OPENSDK",
+                "label": "LSD_LTE_OPENSDK",
                 "url": "https://your-domain.com/ec71x",
             },
             # Add other compiled document sites here. Use full URLs only.
