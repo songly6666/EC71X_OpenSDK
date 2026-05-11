@@ -8,6 +8,7 @@
 .. toctree::
    :maxdepth: 2
    :titlesonly:
+   :includehidden:
 
    basic-index
    peripheral-index
