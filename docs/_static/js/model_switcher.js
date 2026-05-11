@@ -8,13 +8,13 @@
   "use strict";
 
   var DEFAULT_CONFIG = {
-    currentModel: "EC71X",
+    currentModel: "LSD_LTE_OPENSDK",
     preservePath: true,
     languages: ["en", "zh_CN"],
     models: [
       {
-        name: "EC71X",
-        label: "EC71X",
+        name: "LSD_LTE_OPENSDK",
+        label: "LSD_LTE_OPENSDK",
         url: "https://your-domain.com/ec71x",
       },
     ],
@@ -138,7 +138,7 @@
     var label = document.createElement("label");
     label.className = "model-switcher__label";
     label.setAttribute("for", "model-switcher-select");
-    label.textContent = "型号";
+    label.textContent = "利尔达LTE代码";
     container.appendChild(label);
 
     var select = document.createElement("select");
