@@ -1,4 +1,4 @@
-利尔达CAT1.bis 选型表
+利尔达CAT1.bis 产品介绍
 ==========================
 
 :link_to_translation:`en:[English]`
