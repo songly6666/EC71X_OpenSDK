@@ -33,6 +33,9 @@
 
 .. toctree::
    :hidden:
+   :maxdepth: 4
+   :includehidden:
+   :titlesonly:
 
    general/index
    hardware/index
