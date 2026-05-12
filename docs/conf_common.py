@@ -163,7 +163,7 @@ def _load_model_switcher_config():
             {
                  "name": "CAT1.bis_AT",
                  "label": "CAT1.bis_AT",
-                 "url": "https://opendocs.lierda.com/docs/EC71X_OpenSDK/zh_CN/index.html",
+                 "url": "https://opendocs.lierda.com/docs/CAT1_bis_AT/zh_CN/index.html",
             },
         ],
     }
