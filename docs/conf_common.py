@@ -142,6 +142,7 @@ html_js_files = [
     "js/version_table.js",
     "js/enhanced_search.js",  # Enhanced search functionality (Ctrl+K shortcut)
     "js/language_switcher.js",  # Language switcher for nginx subdirectory deployments
+    "js/github_link_label.js",  # Rename the top-right GitHub action label
 ]
 
 
