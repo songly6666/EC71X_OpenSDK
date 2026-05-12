@@ -8,13 +8,13 @@
   "use strict";
 
   var DEFAULT_CONFIG = {
-    currentModel: "LSD_LTE_OPENSDK",
+    currentModel: "CAT1.bis_OpenCPU",
     preservePath: true,
     languages: ["en", "zh_CN"],
     models: [
       {
-        name: "LSD_LTE_OPENSDK",
-        label: "LSD_LTE_OPENSDK",
+        name: "CAT1.bis_OpenCPU",
+        label: "CAT1.bis_OpenCPU",
         url: "https://your-domain.com/ec71x",
       },
     ],
