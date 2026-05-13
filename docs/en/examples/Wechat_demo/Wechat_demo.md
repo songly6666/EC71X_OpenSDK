@@ -1,4 +1,4 @@
-# Lierda LTE-EC71X OpenCPU Wechat Demo Application Example_Rev1.0
+# Wechat Demo Application Example_Rev1.0
 
 {link_to_translation}`zh_CN:[中文]`
 

@@ -1,4 +1,4 @@
-# Lierda LTE-EC71X OpenCPU PWM 开发指导_Rev1.0
+# PWM 开发指导_Rev1.0
 
 {link_to_translation}`en:[English]`
 

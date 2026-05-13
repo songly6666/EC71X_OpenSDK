@@ -1,4 +1,4 @@
-# Lierda LTE-EC71X OpenCPU Versionmanagementmechanism_Rev1.0
+# Versionmanagementmechanism_Rev1.0
 
 {link_to_translation}`zh_CN:[中文]`
 ## Document Revision History

@@ -1,4 +1,4 @@
-# Lierda LTE-EC71X OpenCPU Flash开发指导_Rev1.0
+# Flash开发指导_Rev1.0
 
 {link_to_translation}`en:[English]`
 

@@ -1,4 +1,4 @@
-# Lierda LTE-EC71X OpenCPU I2C 开发指导_Rev1.0
+# I2C 开发指导_Rev1.0
 
 {link_to_translation}`en:[English]`
 

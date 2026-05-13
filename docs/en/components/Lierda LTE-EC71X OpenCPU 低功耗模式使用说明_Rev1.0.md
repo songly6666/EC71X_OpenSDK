@@ -1,4 +1,4 @@
-# Lierda LTE-EC71X OpenCPU Low Power Mode Usage_Rev1.0
+# Low Power Mode Usage_Rev1.0
 
 {link_to_translation}`zh_CN:[中文]`
 

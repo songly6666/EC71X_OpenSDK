@@ -1,4 +1,4 @@
-# Lierda LTE-EC71X OpenCPU HTTP Development Guide_Rev1.0
+# HTTP Development Guide_Rev1.0
 
 {link_to_translation}`zh_CN:[中文]`
 

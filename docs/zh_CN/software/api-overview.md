@@ -1,4 +1,4 @@
-# Lierda LTE-EC71X OpenCPU API入口_Rev1.0
+# API入口_Rev1.0
 
 {link_to_translation}`en:[English]`
 

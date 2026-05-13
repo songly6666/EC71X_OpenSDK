@@ -1,4 +1,4 @@
-# Lierda LTE-EC71X OpenCPU Pin Mux Table_Rev1.0
+# Pin Mux Table_Rev1.0
 
 {link_to_translation}`zh_CN:[中文]`
 

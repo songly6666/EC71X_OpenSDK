@@ -1,4 +1,4 @@
-# Lierda LTE-EC71X OpenCPU AI Demo Application Example_Rev1.0
+# AI Demo Application Example_Rev1.0
 
 {link_to_translation}`zh_CN:[Chinese]`
 

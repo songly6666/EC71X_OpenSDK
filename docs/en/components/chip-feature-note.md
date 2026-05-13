@@ -1,4 +1,4 @@
-# Lierda LTE-EC71X OpenCPU Chip Feature Description_Rev1.0
+# Chip Feature Description_Rev1.0
 
 {link_to_translation}`zh_CN:[中文]`
 

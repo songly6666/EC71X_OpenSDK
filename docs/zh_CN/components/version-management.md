@@ -1,4 +1,4 @@
-# Lierda LTE-EC71X OpenCPU 版本管理机制_Rev1.0
+# 版本管理机制_Rev1.0
 
 {link_to_translation}`en:[English]`
 ## 文件修订历史

@@ -1,4 +1,4 @@
-# Lierda LTE-EC71X OpenCPU 支持AT指令集_Rev1.0
+# 支持AT指令集_Rev1.0
 
 {link_to_translation}`en:[English]`
 

@@ -1,4 +1,4 @@
-# Lierda LTE-EC71X OpenCPU Windows Log 抓取指南_Rev1.0
+# Windows Log 抓取指南_Rev1.0
 
 {link_to_translation}`en:[English]`
 

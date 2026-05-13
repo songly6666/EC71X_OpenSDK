@@ -1,4 +1,4 @@
-# Lierda LTE-EC71X OpenCPU Memory and PSRAM Description_Rev1.0
+# Memory and PSRAM Description_Rev1.0
 
 {link_to_translation}`zh_CN:[中文]`
 

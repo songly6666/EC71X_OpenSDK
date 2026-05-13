@@ -1,4 +1,4 @@
-# Lierda LTE-EC71X OpenCPU APWM Development Guide_Rev1.0
+# APWM Development Guide_Rev1.0
 
 {link_to_translation}`zh_CN:[中文]`
 

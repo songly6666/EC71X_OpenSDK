@@ -1,4 +1,4 @@
-# Lierda LTE-EC71X OpenCPU Common IssuesAnswer_Rev1.0
+# Common IssuesAnswer_Rev1.0
 
 {link_to_translation}`zh_CN:[Chinese]`
 

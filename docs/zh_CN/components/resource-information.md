@@ -1,4 +1,4 @@
-# Lierda LTE-EC71X OpenCPU 系统资源开发指南_Rev1.0
+# 系统资源开发指南_Rev1.0
 
 {link_to_translation}`en:[English]`
 

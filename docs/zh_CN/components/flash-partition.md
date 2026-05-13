@@ -1,4 +1,4 @@
-# Lierda LTE-EC71X OpenCPU Flash分区说明_Rev1.0
+# Flash分区说明_Rev1.0
 
 {link_to_translation}`en:[English]`
 

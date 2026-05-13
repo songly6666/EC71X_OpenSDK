@@ -1,4 +1,4 @@
-# Lierda LTE-EC71X OpenCPU 分区调整指导_Rev1.0
+# 分区调整指导_Rev1.0
 
 {link_to_translation}`en:[English]`
 

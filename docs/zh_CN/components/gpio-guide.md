@@ -1,4 +1,4 @@
-# Lierda LTE-EC71X OpenCPU GPIO2 开发指导_Rev1.0
+# GPIO2 开发指导_Rev1.0
 
 {link_to_translation}`en:[English]`
 

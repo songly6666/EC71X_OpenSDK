@@ -1,4 +1,4 @@
-# Lierda LTE-EC71X OpenCPU FTP开发指导_Rev1.0
+# FTP开发指导_Rev1.0
 
 {link_to_translation}`en:[English]`
 

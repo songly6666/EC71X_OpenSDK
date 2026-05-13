@@ -1,4 +1,4 @@
-# Lierda LTE-EC71X OpenCPU 外挂flash开发指导_Rev1.0
+# 外挂flash开发指导_Rev1.0
 
 {link_to_translation}`en:[English]`
 

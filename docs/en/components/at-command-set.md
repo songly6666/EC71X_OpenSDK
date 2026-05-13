@@ -1,4 +1,4 @@
-# Lierda LTE-EC71X OpenCPU Supported AT Command Set_Rev1.0
+# Supported AT Command Set_Rev1.0
 
 {link_to_translation}`zh_CN:[中文]`
 

@@ -1,4 +1,4 @@
-# Lierda LTE-EC71X OpenCPU SIM Card Application Guide_Rev1.0
+# SIM Card Application Guide_Rev1.0
 
 {link_to_translation}`zh_CN:[中文]`
 

@@ -1,4 +1,4 @@
-# Lierda LTE-EC71X OpenCPU APP全量升级开发指导_Rev1.0
+# APP全量升级开发指导_Rev1.0
 
 {link_to_translation}`en:[English]`
 

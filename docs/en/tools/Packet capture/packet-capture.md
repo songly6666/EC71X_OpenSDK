@@ -1,4 +1,4 @@
-# Lierda LTE-EC71X OpenCPU packet captureToolUsageguide_Rev1.0
+# packet captureToolUsageguide_Rev1.0
 
 {link_to_translation}`zh_CN:[Chinese]`
 

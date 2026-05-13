@@ -1,4 +1,4 @@
-# Lierda LTE-EC71X OpenCPU Log机制说明_Rev1.0
+# Log机制说明_Rev1.0
 
 {link_to_translation}`en:[English]`
 

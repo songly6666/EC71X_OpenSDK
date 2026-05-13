@@ -1,4 +1,4 @@
-# Lierda LTE-EC71X OpenCPU firmware flashingToolUsageguide_Rev1.0
+# firmware flashingToolUsageguide_Rev1.0
 
 {link_to_translation}`zh_CN:[Chinese]`
 

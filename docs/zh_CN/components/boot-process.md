@@ -1,4 +1,4 @@
-# Lierda LTE-EC71X OpenCPU 启动流程说明_Rev1.0
+# 启动流程说明_Rev1.0
 
 {link_to_translation}`en:[English]`
 

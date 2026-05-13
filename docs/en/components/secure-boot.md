@@ -1,4 +1,4 @@
-# Lierda LTE-EC71X OpenCPU Secure Boot Description_Rev1.0
+# Secure Boot Description_Rev1.0
 
 {link_to_translation}`zh_CN:[中文]`
 

@@ -1,4 +1,4 @@
-# Lierda LTE-EC71X OpenCPU 低功耗模式说明_Rev1.0
+# 低功耗模式说明_Rev1.0
 
 {link_to_translation}`en:[English]`
 

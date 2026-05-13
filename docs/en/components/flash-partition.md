@@ -1,4 +1,4 @@
-# Lierda LTE-EC71X OpenCPU Flash Partition Description_Rev1.0
+# Flash Partition Description_Rev1.0
 
 {link_to_translation}`zh_CN:[中文]`
 

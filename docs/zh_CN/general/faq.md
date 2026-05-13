@@ -1,4 +1,4 @@
-# Lierda LTE-EC71X OpenCPU SDK 问题反馈指南_Rev1.0
+# SDK 问题反馈指南_Rev1.0
 
 {link_to_translation}`en:[English]`
 

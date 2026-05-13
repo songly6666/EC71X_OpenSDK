@@ -1,4 +1,4 @@
-# Lierda LTE-EC71X OpenCPU Dump抓取与分析指南
+# Dump抓取与分析指南
 
 {link_to_translation}`en:[English]`
 

@@ -1,4 +1,4 @@
-# Lierda LTE-EC71X OpenCPU 引脚复用表_Rev1.0
+# 引脚复用表_Rev1.0
 
 {link_to_translation}`en:[English]`
 
