@@ -9,11 +9,9 @@
    fs-guide
    app-full-upgrade
    fota-guide
-   partition-adjustment
-   low-power-mode
+   Lierda LTE-EC71X OpenCPU APP全量升级开发指导_Rev1.0
 
 - :doc:`fs-guide`
 - :doc:`app-full-upgrade`
 - :doc:`fota-guide`
-- :doc:`partition-adjustment`
-- :doc:`low-power-mode`
+- :doc:`Lierda LTE-EC71X OpenCPU APP全量升级开发指导_Rev1.0`

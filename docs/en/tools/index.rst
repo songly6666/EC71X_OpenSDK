@@ -13,3 +13,5 @@ this section provides development debug tool usage guide, includingfirmware flas
    flash/flash-tool
    log/log-tool
    usb/USB_Driver_Installation_Guide.md
+   dump-guide
+   log-mechanism

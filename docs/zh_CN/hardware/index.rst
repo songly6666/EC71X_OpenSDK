@@ -72,3 +72,4 @@ NT26F6D0 开发板 & 配件板资料
 
    hardware-guide
    SpriteCoreBox/SpriteCoreBox Application Guide_v0.1
+   pinmux-table

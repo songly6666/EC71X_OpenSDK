@@ -13,3 +13,5 @@
    flash/flash-tool
    log/log-tool
    usb/USB_Driver_Installation_Guide
+   dump-guide
+   log-mechanism

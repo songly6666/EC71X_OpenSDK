@@ -15,4 +15,7 @@
 quick_start
 faq
 CONTRIBUTING
+resource-information
+boot-process
+version-management
 ```
