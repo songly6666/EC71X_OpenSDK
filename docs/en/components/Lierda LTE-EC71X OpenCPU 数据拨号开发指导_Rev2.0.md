@@ -1,4 +1,4 @@
-# Lierda LTE-EC71X OpenCPU Data DialDevelopment Guide\_Rev2.0
+# Data DialDevelopment Guide\_Rev2.0
 
 {link_to_translation}`zh_CN:[中文]`
 

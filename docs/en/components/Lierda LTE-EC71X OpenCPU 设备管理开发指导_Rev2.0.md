@@ -1,4 +1,4 @@
-# Lierda LTE-EC71X OpenCPU Device Management Development Guide\_Rev2.0
+# Device Management Development Guide\_Rev2.0
 
 {link_to_translation}`zh_CN:[in文]`
 

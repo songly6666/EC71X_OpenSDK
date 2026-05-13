@@ -1,4 +1,4 @@
-# Lierda LTE-EC71X OpenCPU APPFull UpgradeDevelopment Guide\_Rev1.0
+# APPFull UpgradeDevelopment Guide\_Rev1.0
 
 {link_to_translation}`zh_CN:[in文]`
 

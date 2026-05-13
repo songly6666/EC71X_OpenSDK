@@ -1,4 +1,4 @@
-# Lierda LTE-EC71X OpenCPU 数据拨号开发指导\_Rev2.0
+# 数据拨号开发指导\_Rev2.0
 
 {link_to_translation}`en:[English]`
 

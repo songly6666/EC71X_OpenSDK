@@ -1,4 +1,4 @@
-# Lierda LTE-EC71X OpenCPU 设备管理 开发指导\_Rev2.0
+# 设备管理 开发指导\_Rev2.0
 
 {link_to_translation}`en:[English]`
 
