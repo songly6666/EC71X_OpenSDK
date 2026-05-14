@@ -1,4 +1,4 @@
-# Lierda 灵芯盒 应用指导_Rev0.1
+# Lierda 小达 应用指导_Rev0.1
 
 {link_to_translation}`en:[English]`
 
