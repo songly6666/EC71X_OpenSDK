@@ -1,5 +1,7 @@
 # Lierda XiaoDa Application Guide_Rev0.1
 
+{link_to_translation}`zh_CN:[Chinese]`
+
 [ChangeList](ChangeList.md)
 
 > [!NOTE] Note
