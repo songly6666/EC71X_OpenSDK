@@ -1,4 +1,4 @@
-[zh_CN](../../zh_CN/小达/小达%20应用指导_Rev0.1.md)
+# Lierda XiaoDa Application Guide_Rev0.1
 
 [ChangeList](ChangeList.md)
 
@@ -12,11 +12,11 @@ This application guide will help you get started quickly with **Xiaoda** and pro
 ![](_images/Xiaoda%20Application%20Guide_Rev0.1/file-20260508100325065.png)
 
 This guide includes the following content:
+
 - [Hardware Version](Xiaoda%20Application%20Guide_Rev0.1.md#Hardware-Version): Introduces hardware version history and known issues.
 - [Getting Started](Xiaoda%20Application%20Guide_Rev0.1.md#Getting-Started): Provides a brief introduction to the development board and hardware/software setup guide.
 - [Hardware Reference](Xiaoda%20Application%20Guide_Rev0.1.md#Hardware-Reference): Provides detailed information about the development board hardware.
 - [Related Resources](Xiaoda%20Application%20Guide_Rev0.1.md#Related-Resources): Lists links to related documents.
-
 
 ---
 
@@ -77,7 +77,7 @@ The main components and interfaces of L-CT4IT00-YP00W-03A_V04 are described belo
 | Motor/Servo Connector*(2)*  | 1.25mm/6PIN connector socket, provides 2-channel PWM/power/H-bridge differential output, use as needed         |
 | GX8006A        | Offline voice chip with local AEC (Acoustic Echo Cancellation) and custom wake word capability                   |
 | CST8302A       | AB/D class amplifier, AB class recommended for better AEC performance                          |
-| CL4056D        | Charge management chip, suitable for 4.2V battery, NTC recommended R<sub>25</sub>=100KΩ    |
+| CL4056D        | Charge management chip, suitable for 4.2V battery, NTC recommended R25=100KΩ    |
 | Nor flash      | Nor flash chip, 32Mbit, suitable for 3.3V systems                    |
 | TC118S         | H-bridge driver chip                                          |
 | USB Connector         | Type-C interface connector for power supply, charging, communication, and download                       |
@@ -95,6 +95,7 @@ The main components and interfaces of L-CT4IT00-YP00W-03A_V04 are described belo
 | SIM Card Slot         | Nano-SIM card slot connector for SIM card reading                          |
 
 > [!NOTE] Note
+> 
 > 1. When using the battery connector, ensure the battery terminal wire sequence corresponds to the connector wire sequence
 > 2. When using the motor/servo connector, pay attention to the wire sequence; motors and servos are not included in the Xiaoda product package
 > 3. When using the extension button connector, pay attention to the wire sequence; the button extension board is not included in the Xiaoda product package
@@ -148,11 +149,13 @@ For driver installation, please refer to [Lierda EigenComm Cat.1 bis Module USB 
 Xiaoda indicates charging and operating status through the charging indicator and RGB indicator.
 
 **Charging Indicator**
+
 - When USB is not connected, the charging indicator is off
 - When USB is connected, the charging indicator shows red, indicating normal charging
 - When USB is connected, the charging indicator shows green, indicating fully charged
 
 **RGB Indicator**
+
 - When powered off, the RGB indicator is off
 - When powered on, the RGB indicator shows solid green during normal operation
 - When powered on, the RGB indicator flashes blue during voice interaction
@@ -171,10 +174,11 @@ The Xiaoda functional block diagram is shown below.
 ### Power Supply Methods
 
 The main board is designed with a power switching circuit and can be powered by the following methods:
+
 1. Powered by **Battery**
-	The device has an integrated 3.7V lithium battery. Press the power button for 3 seconds to power on.
+   The device has an integrated 3.7V lithium battery. Press the power button for 3 seconds to power on.
 2. Powered by **Type-C Port**
-	Insert the Type-C USB data cable into the USB interface. The system power will automatically switch to Type-C power supply. Press the power button for 3 seconds to power on.
+   Insert the Type-C USB data cable into the USB interface. The system power will automatically switch to Type-C power supply. Press the power button for 3 seconds to power on.
 
 ### Charging Circuit
 
@@ -201,6 +205,7 @@ The RF interface reserves an IPEX Gen-1 socket with a reserved π-type matching 
 
 ![](_images/Xiaoda%20Application%20Guide_Rev0.1/file-20260508100325051.png)
 **Please note that all button extension IOs have special usage:**
+
 1. The basic function of PWRKEY is as a power on/off button. After powering on, the press duration can be adjusted for use as a function button, e.g., short press for conversation, long press for shutdown
 2. KEY_FUNC is the only button that can be multiplexed as wakeup, with higher interrupt priority. It can also be multiplexed as AGPIO, maintaining state during module sleep
 3. IO1/IO2 are general-purpose IOs with lower interrupt priority, and can be multiplexed as UART for debugging convenience
@@ -238,6 +243,7 @@ The amplifier gain should match the peak-to-peak value of the preceding audio ou
 The RGB LED communication interface complies with WS2812 timing.
 
 #### Charging Indicator Light
+
 ![](_images/Xiaoda%20Application%20Guide_Rev0.1/file-20260508100325097.png)
 The charging indicator lights up when USB is connected: red light during normal charging, green light when fully charged.
 
@@ -249,3 +255,4 @@ The charging indicator lights up when USB is connected: red light during normal 
 - [BOM](_images/Xiaoda%20Application%20Guide_Rev0.1/file-20260508100325009.xlsx)(XLSX)
 - [NTC Calculation Tool](_images/Xiaoda%20Application%20Guide_Rev0.1/file-20260508100324981.xlsx)(XLSX)
 - [GPIO Multiplexing Table](_images/Xiaoda%20Application%20Guide_Rev0.1/file-20260508100324839.xlsx)(XLSX)
+
