@@ -9,7 +9,7 @@ thissectionprovidesproject generaltechnicaldocument, developmentspecification an
    :titlesonly:
    :maxdepth: 1
 
-   LTE-EC71X OpenCPU APIoverview <api-overview.md>
+   api-overview
    chip-feature-note
    Lierda LTE-EC71X OpenCPU 低功耗模式使用说明_Rev1.0
    memory-and-psram
@@ -17,3 +17,4 @@ thissectionprovidesproject generaltechnicaldocument, developmentspecification an
    at-command-set
    low-power-mode
    partition-adjustment
+   flash-partition
