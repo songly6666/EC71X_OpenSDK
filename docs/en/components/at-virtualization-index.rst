@@ -6,8 +6,3 @@ AT and Virtualization
    :maxdepth: 1
    :titlesonly:
 
-   virtual-at-guide
-   atcmd-guide
-
-- :doc:`virtual-at-guide`
-- :doc:`atcmd-guide`
