@@ -79,6 +79,5 @@ NT26-FCN C系列
    :titlesonly:
 
    hardware-guide
-   SpriteCoreBox/SpriteCoreBox Application Guide_v0.1
    XiaoDa/XiaoDa Application Guide_Rev0.1
    pinmux-table
