@@ -15,11 +15,11 @@ NT26-FCN D系列
    * - 资料简介
      - 相关链接
    * - 硬件设计手册
-     - :download:`Lierda NT26-FCN D系列硬件设计手册_Rev1.3.pdf <./NT26FCN-D-Series/Lierda%20NT26-FCN%20D系列硬件设计手册_Rev1.3.pdf>`
+     - :download:`Lierda NT26-FCN D系列硬件设计手册_Rev1.3.pdf <./NT26FCN-D-Series/Lierda-NT26-FCN-D系列硬件设计手册_Rev1.3.pdf>`
    * - 硬件参考设计指导
-     - :download:`Lierda NT26-FCN D系列硬件参考设计指导.pdf <./NT26FCN-D-Series/Lierda%20NT26-FCN%20D系列_硬件参考设计手册_Rev1.0.pdf>`
+     - :download:`Lierda NT26-FCN D系列硬件参考设计指导.pdf <./NT26FCN-D-Series/Lierda-NT26-FCN-D系列_硬件参考设计手册_Rev1.0.pdf>`
    * - 原理图/PCB 封装/三维模型
-     - | :download:`Lierda NT26-FCN D系列封装_Rev3.0.zip <./NT26FCN-D-Series/Lierda%20NT26-FCN%20D系列封装_Rev3.0.zip>`
+     - | :download:`Lierda NT26-FCN D系列封装_Rev3.0.zip <./NT26FCN-D-Series/Lierda-NT26-FCN-D系列封装_Rev3.0.zip>`
        | :download:`NT26FCND10NNA_V01.step <./NT26FCN-D-Series/NT26FCND10NNA_V01.step>`
 
 NT26-KCN E系列
