@@ -1,22 +1,22 @@
-# USB 驱动安装指导_Rev1.0
+# USB Driver Installation Guide_Rev1.0
 
 {link_to_translation}`zh_CN:[Chinese]`
 
-## 1 修订记录
+## 1 Revision History
 
-| 版本 | 日期 | 作者 | 审核 | 修订内容 |
+| Version | Date | Author | Reviewer | Revision Content |
 | ---- | ---- | ---- | ---- | ---- |
-| 1.0 | 2026-04-17 | sxx | zlc | 创建文档 |
+| 1.0 | 2026-04-17 | sxx | zlc | Document created |
 
-## 2 简介
+## 2 Introduction
 
-本文旨在帮助使用 Lierda LTE-EC71x 系列模组的用户快速完成 USB 驱动安装，以及熟悉 LTE-EC71x 系列模组 USB 口所支持的所有功能。
+This document is intended to help users of Lierda LTE-EC71x series modules quickly complete USB driver installation and become familiar with all functions supported by the USB port of LTE-EC71x series modules.
 
-## 3 USB 驱动安装操作步骤
+## 3 USB Driver Installation Steps
 
-[下载安装包](_tools/lierdaCat1usbSetup_V3.4.3.exe)
+[Download Installer](_tools/lierdaCat1usbSetup_V3.4.3.exe)
 
-### 3.1 Windows 下枚举口介绍
+### 3.1 Enumerated Ports on Windows
 
 <div align="center">
 
@@ -30,21 +30,21 @@
 
 </div>
 
-如上图所示，USB 驱动会加载四个功能口：AT、Diag、OPAQ 和 ECM(或 RNDIS)。
+As shown above, the USB driver loads four functional ports: AT, Diag, OPAQ, and ECM (or RNDIS).
 
-`Lierda At Port`: 用于发送 AT 指令和模组通信（MI_03）
+`Lierda At Port`: Used for sending AT commands and communicating with the module (MI_03)
 
-`Lierda Diag Port`: 用于配合 EPAT 工具，抓取模组运行日志（MI_02）
+`Lierda Diag Port`: Used with the EPAT tool to capture module runtime logs (MI_02)
 
-`Lierda OPAQ Port`: 是模组枚举出的普通串口功能的端口，用于串口数据收发（MI_04）
+`Lierda OPAQ Port`: A general serial port enumerated by the module, used for serial data transmission and reception (MI_04)
 
-`Mobile ECM Network Adapter`: ECM 网络适配器，用于 ECM 上网，在 Windows 下无驱动不能支持上网（MI_00）
+`Mobile ECM Network Adapter`: ECM network adapter for ECM internet access. On Windows, internet access is not supported without the driver (MI_00)
 
-`Remote NDIS Based Internet Sharing Device`: RNDIS 网络适配器，用于 RNDIS 上网，驱动由 Windows 自带，不需要主动安装（MI_00）
+`Remote NDIS Based Internet Sharing Device`: RNDIS network adapter for RNDIS internet access. The driver is built into Windows and does not require manual installation (MI_00)
 
-**注意：** RNDIS 和 ECM 只能同时存在一个上网。MI 号是固定的，对应 `bInterfaceProtocol` 字段。
+**Note:** Only one of RNDIS or ECM can be active for internet access at a time. MI numbers are fixed and correspond to the `bInterfaceProtocol` field.
 
-### 3.2 双击运行 lierdaCat1usbSetup_V3.4.3.exe 安装程序，以管理员权限运行
+### 3.2 Double-click to Run lierdaCat1usbSetup_V3.4.3.exe Installer (Run as Administrator)
 
 <div align="center">
 
@@ -58,7 +58,7 @@
 
 </div>
 
-### 3.3 点击安装进入下一步
+### 3.3 Click Install to Proceed
 
 <div align="center">
 
@@ -66,7 +66,7 @@
 
 </div>
 
-### 3.4 完成安装
+### 3.4 Installation Complete
 
 <div align="center">
 
@@ -74,11 +74,11 @@
 
 </div>
 
-## 4 Linux 环境下驱动安装
+## 4 Driver Installation on Linux
 
-LTE-EC71X 系列模组在 Linux 环境下使用 `usb_serial.ko` 驱动，需要在内核配置项中打开 **CONFIG_USB_SERIAL** 宏控。
+The LTE-EC71X series modules use the `usb_serial.ko` driver on Linux. The **CONFIG_USB_SERIAL** kernel configuration option must be enabled.
 
-**使能的内核选项：**
+**Required kernel options:**
 
 ```
 USB_SERIAL=y
@@ -86,11 +86,11 @@ USB_SERIAL_WWAN=y
 USB_SERIAL_OPTION=y
 ```
 
-### 4.1 修改 option.c 文件
+### 4.1 Modifying the option.c File
 
-**在表中添加 PID VID 号**
+**Adding PID and VID to the Table**
 
-**方法一：** USB serial 驱动通过 `option_ids[]` 数组匹配插入的 USB 设备。LTE-EC71X 系列模组 USB 的 VID 和 PID 号为 3505/0003，将其添加到表中，如图所示：
+**Method 1:** The USB serial driver matches inserted USB devices through the `option_ids[]` array. The VID and PID for LTE-EC71X series modules are 3505/0003. Add them to the table as shown:
 
 <div align="center">
 
@@ -98,7 +98,7 @@ USB_SERIAL_OPTION=y
 
 </div>
 
-**方法二：** 或者可选择通过命令行方式添加 PID 和 VID：
+**Method 2:** Alternatively, you can add the PID and VID via command line:
 
 ```shell
 Linux#> sudo /sbin/modprobe option
@@ -106,9 +106,9 @@ Linux#> sudo chmod 666 /sys/bus/usb-serial/drivers/option1/new_id
 Linux#> echo 3505 0003 > /sys/bus/usb-serial/drivers/option1/new_id
 ```
 
-**过滤对网卡类型驱动枚举**
+**Filtering Network Adapter Type Driver Enumeration**
 
-在 `drivers/usb/serial/option.c` 文件 `option_probe` 中添加对网卡枚举设备的屏蔽代码：
+Add code to filter network adapter enumeration devices in the `option_probe` function of `drivers/usb/serial/option.c`:
 
 <div align="center">
 
@@ -116,7 +116,7 @@ Linux#> echo 3505 0003 > /sys/bus/usb-serial/drivers/option1/new_id
 
 </div>
 
-### 4.2 Linux 下枚举口介绍
+### 4.2 Enumerated Ports on Linux
 
 <div align="center">
 
@@ -124,26 +124,25 @@ Linux#> echo 3505 0003 > /sys/bus/usb-serial/drivers/option1/new_id
 
 </div>
 
-- **ttyUSB0:** 对应 Windows 下 Lierda Diag Port，日志口。
-- **ttyUSB1:** 对应 Windows 下 Lierda At Port，发送 AT 指令。
-- **ttyUSB2:** OpenSDK 下对应 Windows 下 Lierda OPAQ Port。标准固件下对应 Windows 下 Lierda USB Modem（PPP 拨号接口）。
-- ECM 和 RNDIS 会直接加载到 eth0。
+- **ttyUSB0:** Corresponds to Lierda Diag Port on Windows, the log port.
+- **ttyUSB1:** Corresponds to Lierda At Port on Windows, for sending AT commands.
+- **ttyUSB2:** Under OpenSDK, corresponds to Lierda OPAQ Port on Windows. Under standard firmware, corresponds to Lierda USB Modem on Windows (PPP dial-up interface).
+- ECM and RNDIS are directly loaded to eth0.
 
-**注意：** RNDIS 和 ECM 只能同时存在一个上网。MI 号是固定的，对应 `bInterfaceProtocol` 字段。
-可使用命令：`sudo dmesg | grep -i usb` 查看。
+**Note:** Only one of RNDIS or ECM can be active for internet access at a time. MI numbers are fixed and correspond to the `bInterfaceProtocol` field.
+You can use the command: `sudo dmesg | grep -i usb` to check.
 
-## 5 常见问题
+## 5 FAQ
 
-### 5.1 如果在 Windows 上安装驱动失败，请关闭内存完整性
+### 5.1 If Driver Installation Fails on Windows, Disable Memory Integrity
 
-1. 按 Windows + R 快捷键打开「运行」对话框，执行 `windowsdefender:`（有冒号）打开「Windows 安全中心」。
-2. 进入「设备安全性」>「内核隔离详细信息」。
-3. 根据你的实际使用情况和场景，打开或关闭「内存完整性」开关。
-4. 重启电脑让配置生效。
+1. Press Windows + R to open the "Run" dialog, execute `windowsdefender:` (with the colon) to open "Windows Security Center".
+2. Navigate to "Device Security" > "Core Isolation Details".
+3. Based on your actual usage scenario, toggle the "Memory Integrity" switch on or off.
+4. Restart the computer for the configuration to take effect.
 
 <div align="center">
 
 <img src="_images/USB驱动安装指导/image_10.png" width="600"/>
 
 </div>
-

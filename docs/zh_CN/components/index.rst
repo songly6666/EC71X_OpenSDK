@@ -14,6 +14,5 @@
    peripheral-index
    network-index
    upgrade-storage-index
-   at-virtualization-index
    multimedia-index
    appendix-index

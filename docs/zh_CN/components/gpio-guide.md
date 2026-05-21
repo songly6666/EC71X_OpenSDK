@@ -530,7 +530,7 @@ liot_pinfunc_e Liot_GetPinFunc(int modempin);
 
 引脚复用功能，见 `liot_pinfunc_e`。
 
-### 6.10 Liot_WakeupIntInit
+### 5.10 Liot_WakeupIntInit
 
 初始化唤醒引脚中断。
 
@@ -557,7 +557,7 @@ liot_gpioerr_e Liot_WakeupIntInit(liot_wakeuppad_e wakeuppad, liot_intsig_e sig,
 
 错误码，见 `liot_gpioerr_e`。
 
-### 6.11 Liot_WakeupIntDeinit
+### 5.11 Liot_WakeupIntDeinit
 
 去初始化唤醒引脚中断。
 
@@ -575,7 +575,7 @@ liot_gpioerr_e Liot_WakeupIntDeinit(liot_wakeuppad_e wakeuppad);
 
 错误码，见 `liot_gpioerr_e`。
 
-### 6.12 Liot_WakeupPadGetLevel
+### 5.12 Liot_WakeupPadGetLevel
 
 获取 wakeup 引脚电平。
 
@@ -593,7 +593,7 @@ liot_gpiolvl_e Liot_WakeupPadGetLevel(liot_wakeuppad_e wakeuppad);
 
 引脚电平，见 `liot_gpiolvl_e`。
 
-## 7 代码示例
+## 6 代码示例
 
 示例代码参考 `LSDK\examples\demo\src\demo_gpio2.c` 文件。
 

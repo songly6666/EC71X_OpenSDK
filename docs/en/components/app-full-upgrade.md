@@ -1,187 +1,213 @@
-# APPFull UpgradeDevelopment Guide\_Rev1.0
+# APP Full Upgrade Development Guide_Rev1.0
 
 {link_to_translation}`zh_CN:[中文]`
 
 ## Document Revision History
 
-| **Version** | **Date** | **Revised By** | **Reviewed By** | **Changes** |
-| --- | --- | --- | --- | --- |
-| Rev1.0 | 26-02-28 | zlc | ymx | Initial document |
+| **Document Version** | **Revision Date** | **Revised By** | **Reviewed By** | **Changes** |
+| ---- | ---- | ---- | ---- | ---- |
+| Rev1.0 | 26-02-28 | zlc | ymx | Initial release |
 
-## 1 Introduction
+## 1 Introduction
 
-This section mainly introduces customer when using base package separation solution SDK, Full Upgrade user APP partition method, guide customer to quickly output APP image upgrade package, and complete APP partition image upgrade.
+This chapter mainly introduces the method for performing full upgrade of the user APP partition when using the base package separation solution SDK. It guides customers to quickly generate APP image upgrade packages and complete the upgrade of the APP partition image.
 
-Currently through compile mode automatic script generates APP Full Upgrade package, contains fixed format data header, mainly is APP partition FLASH start address, APP complete data, APP MD5 check value.
+Currently, the APP full upgrade package is automatically generated through compilation scripts. The package contains a data header with a fixed format, mainly including the FLASH start address of the APP partition, complete APP data, and APP MD5 checksum value.
 
-Default SDK will not output APP Full Upgrade package, needModifiedMakefileinBUILD\_COMP\_OTA\_EN=y openThisafter macro, compile will automatically output APP upgrade package AppOTA.bin, Modified method as shown in following figure.
+By default, the SDK does not output the APP full upgrade package. You need to modify the Makefile by setting `BUILD_COMP_OTA_EN=y` to enable this macro. After enabling, the compilation will automatically output the APP upgrade package AppOTA.bin. The modification method is shown in the figure below.
 
-![](./_images/APPFull Upgrade1.png)
+<div align="center">
 
-As shown in following figure: AppOTA.bin is APP image OTA upgrade package.
+<img src="../../zh_CN/components/_images/APP全量升级开发指导/image_1.png" width="600"/>
 
-![](./_images/APPFull Upgrade2.png)
+</div>
 
-APPFull UpgradePrinciple Description
+As shown in the figure below: AppOTA.bin is the OTA upgrade package for the APP image.
 
-Upgrade execution process is in bootloader stage, This way if exception power loss during upgrade process, System will continue APP upgrade after start, ensure upgrade power loss system does not become bricked.
+<div align="center">
 
-![](./_images/APPFull Upgrade3.png)
+<img src="../../zh_CN/components/_images/APP全量升级开发指导/image_2.png" width="600"/>
 
-Complete upgrade process
+</div>
 
-**Description**
+APP Full Upgrade Principle Description
 
-| APP stage: mainly download upgrade package to FileSystem, CallLiot\_FotaAppUpgradeCheck()Interfaceperformupgradepackage integrity check. Then reset module. <br>Bootloader stage: Mount FileSystem, If AppOTA.bin upgrade file exists in FileSystem, then start reading image content in upgrade file, Erase and update APP partition. After update ends will continue to start system. <br>Upgrade package need to be placed in FileSystem, Base package will reserve enough space, User does not need to concern. |
-| --- |
+The upgrade execution process occurs in the bootloader stage. This ensures that if an abnormal power loss occurs during the upgrade, the system will continue the APP upgrade after restart, preventing the system from becoming bricked due to power loss during upgrade.
 
-## 2 API Function Overview
+<div align="center">
+
+<img src="../../zh_CN/components/_images/APP全量升级开发指导/image_3.png" width="600"/>
+
+</div>
+
+Complete Upgrade Process
+
+**Note:**
+
+- APP Stage: Mainly involves downloading the upgrade package to the filesystem, calling the `Liot_FotaAppUpgradeCheck()` interface to verify the integrity of the upgrade package, and then resetting the module.
+- Bootloader Stage: Mount the filesystem. If the AppOTA.bin upgrade file exists in the filesystem, start reading the image content from the upgrade file, erase and update the APP partition. After the update is completed, continue to boot the system.
+- The upgrade package needs to be placed in the filesystem. The base package will reserve sufficient space, so users do not need to worry about this.
+
+## 2 API Function Overview
 
 | **Function** | **Description** |
-| --- | --- |
-| Liot\_FotaAppUpgradeCheck | Full Upgrade APP partition upgrade package detection interface |
+| ---- | ---- |
+| `Liot_FotaAppUpgradeCheck` | Full upgrade APP partition upgrade package detection interface |
 
-## 3 API Function Details
+## 3 Detailed API Functions
 
-### 3.1 liot\_fota\_errcode\_e
+### 3.1 liot\_fota\_errcode\_e
 
-FOTA Error Codes are composed of related component ID and standard error codes, Among them component ID is high 16 bits, Standard error codes are low 16 bits.
+FOTA error codes consist of related component IDs and standard error codes. The component ID occupies the upper 16 bits, and the standard error code occupies the lower 16 bits.
 
 1. Declaration
-
 
 ```c
 typedef enum{
-LIOT_FOTA_UPGRADE_SUCCESS = 0, /*!< Indicates that the FOTA upgrade was successful.*/
-LIOT_FOTA_UPGRADE_FAI L = 504 | LIOT_FOTA_ERRCODE_BASE, /*!< General FOTA upgrade failure.*/
-LIOT_FOTA_UPGRADE_CHECK_FAI L = 505 | LIOT_FOTA_ERRCODE_BASE, /*!< FOTA upgrade check failed.*/
-LIOT_FOTA_UPGRADE_MD5_FAI L = 506 | LIOT_FOTA_ERRCODE_BASE, /*!< MD5 checksum verification of the FOTA package failed.*/
-LIOT_FOTA_UPGRADE_MAT CH_FAI L = 507 | LIOT_FOTA_ERRCODE_BASE, /*!< FOTA package does not match the device requirements.*/
-LIOT_FOTA_UPGRADE_NO_FILE_FAI L = 508 | LIOT_FOTA_ERRCODE_BASE, /*!< FOTA file not found or missing.*/
-LIOT_FOTA_UPGRADE_OPENFILE_FAI L = 509 | LIOT_FOTA_ERRCODE_BASE, /*!< Failed to open the FOTA upgrade file.*/
-LIOT_FOTA_UPGRADE_FILESIZE_FAI L = 510 | LIOT_FOTA_ERRCODE_BASE, /*!< Invalid or unsupported FOTA file size.*/
-LIOT_FOTA_UPGRADE_LFS_MOUNT_FAI L = 511 | LIOT_FOTA_ERRCODE_BASE, /*!< Failed to mount LittleFS (LFS) for FOTA.*/
-LIOT_FOTA_UPGRADE_PARAM_FAI L = 512 | LIOT_FOTA_ERRCODE_BASE, /*!< Invalid input parameters for FOTA upgrade.*/
-LIOT_FOTA_UPGRADE_PROJECT_MAT CH_FAI L = 552 | LIOT_FOTA_ERRCODE_BASE, /*!< Project name in FOTA package does not match the device.*/
-LIOT_FOTA_UPGRADE_BASELINE_MAT CH_FAI L = 553 | LIOT_FOTA_ERRCODE_BASE, /*!< Baseline version in FOTA package does not match the device.*/
-LIOT_FOTA_UPGRADE_POINT_NULL_ERR = 570 | LIOT_FOTA_ERRCODE_BASE, /*!< Null pointer error during FOTA upgrade.*/
-LIOT_FOTA_UPGRADE_FLAG_SET_ERR = 571 | LIOT_FOTA_ERRCODE_BASE, /*!< Failed to set the upgrade flag during FOTA.*/
+    LIOT_FOTA_UPGRADE_SUCCESS             = 0,                              /*!< Indicates that the FOTA upgrade was successful.*/
+    LIOT_FOTA_UPGRADE_FAIL                = 504 | LIOT_FOTA_ERRCODE_BASE,   /*!< General FOTA upgrade failure.*/
+    LIOT_FOTA_UPGRADE_CHECK_FAIL          = 505 | LIOT_FOTA_ERRCODE_BASE,   /*!< FOTA upgrade check failed.*/
+    LIOT_FOTA_UPGRADE_MD5_FAIL            = 506 | LIOT_FOTA_ERRCODE_BASE,   /*!< MD5 checksum verification of the FOTA package failed.*/
+    LIOT_FOTA_UPGRADE_MATCH_FAIL          = 507 | LIOT_FOTA_ERRCODE_BASE,   /*!< FOTA package does not match the device requirements.*/
+    LIOT_FOTA_UPGRADE_NO_FILE_FAIL        = 508 | LIOT_FOTA_ERRCODE_BASE,   /*!< FOTA file not found or missing.*/
+    LIOT_FOTA_UPGRADE_OPENFILE_FAIL       = 509 | LIOT_FOTA_ERRCODE_BASE,   /*!< Failed to open the FOTA upgrade file.*/
+    LIOT_FOTA_UPGRADE_FILESIZE_FAIL       = 510 | LIOT_FOTA_ERRCODE_BASE,   /*!< Invalid or unsupported FOTA file size.*/
+    LIOT_FOTA_UPGRADE_LFS_MOUNT_FAIL      = 511 | LIOT_FOTA_ERRCODE_BASE,   /*!< Failed to mount LittleFS (LFS) for FOTA.*/
+    LIOT_FOTA_UPGRADE_PARAM_FAIL          = 512 | LIOT_FOTA_ERRCODE_BASE,   /*!< Invalid input parameters for FOTA upgrade.*/
+    LIOT_FOTA_UPGRADE_PROJECT_MATCH_FAIL  = 552 | LIOT_FOTA_ERRCODE_BASE,   /*!< Project name in FOTA package does not match the device.*/
+    LIOT_FOTA_UPGRADE_BASELINE_MATCH_FAIL = 553 | LIOT_FOTA_ERRCODE_BASE,   /*!< Baseline version in FOTA package does not match the device.*/
+    LIOT_FOTA_UPGRADE_POINT_NULL_ERR      = 570 | LIOT_FOTA_ERRCODE_BASE,   /*!< Null pointer error during FOTA upgrade.*/
+    LIOT_FOTA_UPGRADE_FLAG_SET_ERR        = 571 | LIOT_FOTA_ERRCODE_BASE,   /*!< Failed to set the upgrade flag during FOTA.*/
 } liot_fota_errcode_e;
 ```
 
-2. Parameter
-
+2. Parameters
 
 | **Parameter** | **Description** |
-| --- | --- |
-| LIOT\_FOTA\_UPGRADE\_SUCCESS | ExecuteSuccess |
-| LIOT\_FOTA\_UPGRADE\_FAI L | ExecuteFailure |
-| LIOT\_FOTA\_UPGRADE\_CHECK\_FAI L | FOTA upgrade package check failure |
-| LIOT\_FOTA\_UPGRADE\_MD5\_FAI L | FOTA upgrade package MD5 check failure |
-| LIOT\_FOTA\_UPGRADE\_MAT CH\_FAI L | FOTA upgrade match file failure |
-| LIOT\_FOTA\_UPGRADE\_NO\_FILE\_FAI L | No upgrade package file |
-| LIOT\_FOTA\_UPGRADE\_OPENFILE\_FAI L | Open file failure |
-| LIOT\_FOTA\_UPGRADE\_FILESIZE\_FAI L | Upgrade package file length exceeds limit |
-| LIOT\_FOTA\_UPGRADE\_LFS\_MOUNT\_FAI L | FileSystemLoadFailure |
-| LIOT\_FOTA\_UPGRADE\_PARAM\_FAI L | ParameterError |
-| LIOT\_FOTA\_UPGRADE\_PROJECT\_MAT CH\_FAI L | Project mismatch |
-| LIOT\_FOTA\_UPGRADE\_BASELINE\_MAT CH\_FAI L | Baseline mismatch |
-| LIOT\_FOTA\_UPGRADE\_POINT\_NULL\_ERR | Pointer is NULL |
-| LIOT\_FOTA\_UPGRADE\_FLAG\_SET\_ERR | Flag bit set error |
+| ---- | ---- |
+| LIOT\_FOTA\_UPGRADE\_SUCCESS | Execution successful |
+| LIOT\_FOTA\_UPGRADE\_FAIL | Execution failed |
+| LIOT\_FOTA\_UPGRADE\_CHECK\_FAIL | FOTA upgrade package check failed |
+| LIOT\_FOTA\_UPGRADE\_MD5\_FAIL | FOTA upgrade package MD5 checksum failed |
+| LIOT\_FOTA\_UPGRADE\_MATCH\_FAIL | FOTA upgrade file matching failed |
+| LIOT\_FOTA\_UPGRADE\_NO\_FILE\_FAIL | No upgrade package file |
+| LIOT\_FOTA\_UPGRADE\_OPENFILE\_FAIL | Failed to open file |
+| LIOT\_FOTA\_UPGRADE\_FILESIZE\_FAIL | Upgrade package file length exceeds limit |
+| LIOT\_FOTA\_UPGRADE\_LFS\_MOUNT\_FAIL | Filesystem loading failed |
+| LIOT\_FOTA\_UPGRADE\_PARAM\_FAIL | Parameter error |
+| LIOT\_FOTA\_UPGRADE\_PROJECT\_MATCH\_FAIL | Project mismatch |
+| LIOT\_FOTA\_UPGRADE\_BASELINE\_MATCH\_FAIL | Baseline mismatch |
+| LIOT\_FOTA\_UPGRADE\_POINT\_NULL\_ERR | Null pointer |
+| LIOT\_FOTA\_UPGRADE\_FLAG\_SET\_ERR | Flag setting error |
 
-### 3.2 Liot\_FotaAppUpgradeCheck
+### 3.2 Liot\_FotaAppUpgradeCheck
 
-This function is used to check whether APP Full Upgrade package is legal, and after detection completes automatically rename AppOTA.bin. The reason for automatic renaming is , upgradeProcessoccurs inbootloaderstage, willAutomaticMount FileSystem, then indexAppOTA.binFileperformupgrade.
+This function is used to check whether the APP full upgrade package is valid, and automatically rename AppOTA.bin after the check is completed. The reason for automatic renaming is that the upgrade process occurs in the bootloader stage, which will automatically mount the filesystem and then index the AppOTA.bin file for upgrade.
 
-Currently only supports saving upgrade package in FileSystem, External flash mode upgrade is not supported yet. When generating upgrade package, we have internally logged fixed header and APP image MD5 value. ThisFunctionmainly Functionthen is Checkfixed header, and verifyMD5value. upgrade CompleteProcess is inbootloaderinExecute , ifupgradeencounter during processExceptionpower off, after power on still is willContinueupgrade.
+Currently, only storing upgrade packages in the filesystem is supported; upgrading via external flash is not currently supported. When generating the upgrade package, we have already recorded the fixed packet header and the MD5 value of the APP image internally. The main function of this interface is to check the fixed packet header and verify the MD5 value. The complete upgrade process is executed in the bootloader. If an abnormal power loss occurs during the upgrade, the upgrade will continue after power-on.
 
-**Note**
+**Remarks:**
 
-| * ThisInterfaceCallnotneedNetworkDisconnect<br> <br>* becauseFileonlyneed2Kspace, ThisInterfaceCallnotwillcause watchdogTimeoutetc.Issue<br> <br>* only is memoryRequestFailureafter oneError Codes, userCanaccording toReturn ValueperformExceptionHandle |
-| --- |
+- This interface can be called without disconnecting the network
+- Since the file only requires 2K of space, calling this interface will not cause watchdog timeout issues
+- This is just an error code after memory allocation failure; users can handle exceptions based on the return value
 
 1. Declaration
-
 
 ```c
 liot_fota_errcode_e Liot_FotaAppUpgradeCheck(const char *file_name, BOOL is_reboot);
 ```
 
-2. Parameter
+2. Parameters
 
-
-* file\_name: \[In\] APP upgrade package name.
-
-* is\_reboot: \[In\]  whether to immediately restart for upgrade true: Immediately reset module for APP image upgrade, false: Do not immediately reset, Wait until next reset for APPpartitionupgrade.
-
+- `file_name`: [In] APP upgrade package name.
+- `is_reboot`: [In] Whether to immediately restart for upgrade. true: immediately reset the module for APP image upgrade, false: do not reset immediately, wait until the next reset for APP partition upgrade.
 
 3. Return Value
 
+- `liot_fota_errcode_e`: Execution result code, may return the following error codes:
+  - `LIOT_FOTA_UPGRADE_PARAM_FAIL`: Parameter error
+  - `LIOT_FOTA_UPGRADE_NO_FILE_FAIL`: File does not exist
+  - `LIOT_FOTA_UPGRADE_OPENFILE_FAIL`: Failed to open or read file
+  - `LIOT_FOTA_UPGRADE_CHECK_FAIL`: Upgrade package header check failed
+  - `LIOT_FOTA_UPGRADE_FAIL`: Memory allocation failure at low-level
+  - `LIOT_FOTA_UPGRADE_MD5_FAIL`: Upgrade package MD5 checksum failed
+  - `LIOT_FOTA_UPGRADE_SUCCESS`: Upgrade package verification successful
 
-* liot\_fota\_errcode\_e: Execution result codes, canReturnAs followsError Codes.
+## 4 Code Examples
 
+Example code reference: `LSDK/example/src/demo_app_fota.c`.
 
-LIOT\_FOTA\_UPGRADE\_PARAM\_FAI L  ParameterError
+The demo continuously checks for upgrade packages with a fixed filename (upgrade.bin).
 
-LIOT\_FOTA\_UPGRADE\_NO\_FILE\_FAI L  File does not exist
+For local testing, you can export the module's filesystem and add the AppOTA.bin file generated by compilation to the filesystem with the name upgrade.bin. Then re-flash the filesystem to the device and reset the device. The system will automatically check the file and verify the upgrade package MD5 value. The upgrade process log can be viewed through the debug port.
 
-LIOT\_FOTA\_UPGRADE\_OPENFILE\_FAI L Open file or read file failure
+**Remarks:**
 
-LIOT\_FOTA\_UPGRADE\_CHECK\_FAI L upgradepackage headerCheckFailure
+- The specific location of demo source code has been explained in the development guide and will not be repeated here
+- For lfsutil.exe, please see the tool link below
+- The continuous checking of upgrade.bin in the demo does not perform high-frequency operations on the Flash filesystem, it only checks the file
 
-LIOT\_FOTA\_UPGRADE\_FAI L underlyingMemory request failure.
+1. Enable this demo for testing
 
-LIOT\_FOTA\_UPGRADE\_MD5\_FAI L upgradepackageMD5verifyFailure.
+<div align="center">
 
-LIOT\_FOTA\_UPGRADE\_SUCCESS  upgradepackage checkSuccess.
+<img src="../../zh_CN/components/_images/APP全量升级开发指导/image_4.png" width="600"/>
 
-## 4 CodeExample
+</div>
 
-Example code reference LSDK/example/src/demo\_app\_fota.c.
+2. View the filesystem address when exporting:
 
-demoloop infixedFilename(upgrade.bin) upgradepackage check,
+<div align="center">
 
-localTestcanExportModulein FileSystem, and willCompilegenerate AppOTA.binFiletoupgrade.bin name methodAddtoFileSystemin, reflashFileSystemtodevicein, thenResetdevice, SystemwillAutomaticperformThisFile Checkand verifyupgradepackageMD5value, upgradeprocess logcanthroughdebugport to view.
+<img src="../../zh_CN/components/_images/APP全量升级开发指导/image_5.png" width="600"/>
 
-**Note**
+</div>
 
-| demo SourceCodes specific location atdevelopmentdevelopmentguide alreadyDescription, Thisnot repeating<br>lfsutil.exe please check belowToolConnect<br>demoloop inupgrade.binnotwillhigh frequencyoperation Flash FileSystem, only is CheckFile |
-| --- |
+3. After exporting the filesystem, write AppOTA.bin to the filesystem.
 
-1.TestpleaseEnableThisdemo
+Tool link: [Please check DingTalk document for attachment "Filesystem Read/Write Tool"](https://alidocs.dingtalk.com/i/nodes/G53mjyd80p7vr7OLuv4lg7Qo86zbX04v?doc_type=wiki_doc&iframeQuery=anchorId%3DX02mm91i4o8sjqtr6w3ui)
 
-![](./_images/APPFull Upgrade4.png)
+<div align="center">
 
-2.Exportwhen FileSystemAddressview method:
+<img src="../../zh_CN/components/_images/APP全量升级开发指导/image_6.png" width="600"/>
 
-![](./_images/APPFull Upgrade5.png)
+</div>
 
-3.ExportFileafter system willAppOTA.binWriteFileSystem.
+4. Flash the new filesystem bin to the system.
 
-Toollink: [please check attachment in DingTalk document"FileSystem read/write Tool"](https://alidocs.dingtalk.com/i/nodes/G53mjyd80p7vr7OLuv4lg7Qo86zbX04v?iframeQuery=anchorId%3DX02mm91i4o8sjqtr6w3ui)
+<div align="center">
 
-![](./_images/APPFull Upgrade6.png)
+<img src="../../zh_CN/components/_images/APP全量升级开发指导/image_7.png" width="600"/>
 
-4.new FileSystembinflash toSystemin.
+</div>
 
-![](./_images/APPFull Upgrade7.png)
+5. Reset the device to check the package.
 
-5.Resetdeviceperform packageCheck.
+<div align="center">
 
-![](./_images/APPFull Upgrade8.png)
+<img src="../../zh_CN/components/_images/APP全量升级开发指导/image_8.png" width="600"/>
 
-6.debugport log, HintupgradeSuccess.
+</div>
 
-![](./_images/APPFull Upgrade9.png)
+6. Debug port log indicates successful upgrade.
 
-## 5 Common Issues
+<div align="center">
 
-1, thenTestduring processFileSystem Addressdecide based on base package, please according to actual use base package selection.
+<img src="../../zh_CN/components/_images/APP全量升级开发指导/image_9.png" width="600"/>
 
-2, APPimage hasSizeupper limit, ifCodemore, APPinsufficient space, thenneedcontactFAEfeedback internal base package partition repartition. following figurecancheckCurrentbase package correspondingAPPpartition upper limitSize.
+</div>
 
-![](./_images/APPFull Upgrade10.png)
+## 5 FAQ
 
-3, then create package ensures whenAPPimageSize upper limit, exceedswillearly warning
+1. During testing, the filesystem address is determined by the base package. Please select according to the actual base package being used.
+2. APP images have a size upper limit. If there is too much code and the APP space is insufficient, you need to contact FAE to provide feedback for internal repartitioning of the base package. The figure below shows the current APP partition size limit for the corresponding base package.
 
-4. temporarily notSupportrollbackmechanism
+<div align="center">
+
+<img src="../../zh_CN/components/_images/APP全量升级开发指导/image_10.png" width="600"/>
+
+</div>
+
+3. The APP image size upper limit is guaranteed when creating the package, and warnings will be issued in advance if exceeded.
+4. Rollback mechanism is not currently supported.

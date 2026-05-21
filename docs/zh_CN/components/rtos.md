@@ -2178,5 +2178,5 @@ void liot_os_demo_thread(void *argv)
 
 #### 5.1.3 运行结果
 
-<div align="center"><img src="_images/RTOS_开发指导/image_1.png" width="600"/></div>
+<div align="center"><img src="_images/RTOS开发指导/image_1.png" width="600"/></div>
 

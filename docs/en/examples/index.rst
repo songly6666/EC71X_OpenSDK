@@ -11,3 +11,4 @@ This section provides application development example code, to help developers q
 
    Ai_demo/Ai_demo
    Wechat_demo/Wechat_demo
+   XiaoDa/XiaoDa Application Guide_Rev0.1

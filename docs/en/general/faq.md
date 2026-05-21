@@ -1,107 +1,85 @@
-# Common IssuesAnswer_Rev1.0
+# SDK Feedback Guide_Rev1.0
 
 {link_to_translation}`zh_CN:[Chinese]`
 
-## Document Revision History
+## 1 Revision History
 
-| **Version** | **Date** | **Revised By** | **Reviewed By** | **Changes** |
-| --- | --- | --- | --- | --- |
-| Rev1.0 | 26-04-17 | | | Initial Release |
+| Version | Date | Author | Changes |
+| ---- | ---- | ---- | ---- |
+| Rev1.0 | 2026-04-22 | MBB | Created document |
 
-## 1 Introduction
+## 2 Introduction
 
-This chapter introduces common issues and solutions during EC71X OpenCPU development, to help developers quickly locate and solve issues encountered during development.
+This document describes how to report issues when using the Lierda LTE-EC71X OpenCPU SDK. We welcome your feedback.
 
-## 2 Compile Related Issues
+## 3 Project Overview
 
-### 2.1 Compile Environment Configuration
+Lierda LTE-EC71X OpenCPU SDK is an OpenCPU development kit for the EC71X module series. The SDK allows developers to run custom applications directly on the module without an external MCU.
 
-**Q: How toconfigureCompileenvironment？**
+Key features:
 
-To be supplemented
+| Feature | Description |
+| ---- | ---- |
+| Supported chips | F6B_A, F6D_A, F7B_A, K2B_A, K2F_A, etc. |
+| OS | FreeRTOS real-time operating system |
+| API standard | CMSIS-RTOS2 standard API |
+| Middleware | MQTT, HTTP, LwIP, mbedTLS, LittleFS, etc. |
+| Toolchains | GCC, Keil |
+| System interfaces | Filesystem, GPIO, UART, low-power management, etc. |
 
-**Q: Compileerror: toolchain not found, what to do？**
+## 4 Issue Reporting
 
-To be supplemented
+### 4.1 Types of Feedback
 
-### 2.2 CompileErrorHandle
+| Type | Description | Example |
+| ---- | ---- | ---- |
+| Bug report | Functional exception, crash, error | Build failure, runtime crash, unexpected behavior |
+| Feature request | New feature or improvement | Request support for protocol X, optimize interface Y |
+| Documentation issue | Errors, omissions, unclear explanations | Incorrect API doc, missing usage example |
+| Usage question | Questions during usage | How to implement feature X, meaning of parameter Y |
 
-**Q: Compilelink error occurs, what to do？**
+### 4.2 Report Template
 
-To be supplemented
+Please use the following template when submitting an issue:
 
-**Q: Compileinsufficient memory, what to do？**
+1. **Issue Type**
+   Bug report / Feature request / Documentation issue / Usage question (choose one)
+2. **Description**
+   Clearly describe the observed problem
+3. **Environment**
+   SDK version:
+   Chip model: F6B_A/F6D_A/F7B_A/K2B_A/K2F_A (choose one or more)
+   Toolchain version:
+   Operating system:
+4. **Reproduction steps**
+   Detailed steps to reproduce
+5. **Logs**
+   Build logs or runtime logs
+6. **Expected behavior**
+   Describe the expected correct behavior
 
-To be supplemented
+### 4.3 Additional Notes for Feature Requests
 
-## 3 Run Related Issues
+When submitting feature requests, please additionally provide:
 
-### 3.1 Firmware Flashing
+- Use-case scenarios
+- Expected implementation approach
+- Compatibility considerations with other features
 
-**Q: How to flash firmware？**
+## 5 Contact
 
-To be supplemented
+| Channel | Description |
+| ---- | ---- |
+| Issue tracker | https://github.com/orgs/lierda-iot/repositories |
+| Technical discussion | Scan the QR code below to join the discussion group |
+| Email | yumx@lierda.com, liangj@lierda.com |
 
-**Q: flashFailureWhat to do？**
+<div align="center">
 
-To be supplemented
+<img src="_images/SDK_issue_feedback/image_1.png" width="600"/>
 
-### 3.2 RunDebug
+</div>
 
-**Q: programrun exceptionWhat to do？**
+## 6 Acknowledgements
 
-To be supplemented
-
-**Q: How tocheckRunlog？**
-
-To be supplemented
-
-## 4 NetworkrelatedIssue
-
-### 4.1 Network Registration
-
-**Q: ModulecannotRegisterNetworkWhat to do？**
-
-To be supplemented
-
-**Q: weak signalWhat to do？**
-
-To be supplemented
-
-### 4.2 datacommunication
-
-**Q: SocketConnectFailureWhat to do？**
-
-To be supplemented
-
-**Q: MQTTConnectFailureWhat to do？**
-
-To be supplemented
-
-## 5 Power ConsumptionrelatedIssue
-
-### 5.1 Low Power Mode
-
-**Q: How toEnterLow Power Mode？**
-
-To be supplemented
-
-**Q: Low Power ModeWake upFailureWhat to do？**
-
-To be supplemented
-
-## 6 upgraderelatedIssue
-
-### 6.1 FOTA upgrade
-
-**Q: FOTA upgradeFailureWhat to do？**
-
-To be supplemented
-
-**Q: upgradeafter firmware cannot startWhat to do？**
-
-To be supplemented
-
-## 7 otherIssue
-
-To be supplemented
+Thanks to all contributors to this project.
