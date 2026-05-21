@@ -26,7 +26,7 @@ This is your project's documentation center. This project provides a comprehensi
 
 .. _Quick Start: general/quick-start.html
 
-.. _API Guide: software/api-overview.html
+.. _API Guide: components/api-overview.html
 
 .. _SDK Introduction: general/index.html
 
@@ -36,7 +36,6 @@ This is your project's documentation center. This project provides a comprehensi
 
    general/index
    hardware/index
-   software/index
    components/index
    tools/index
    examples/index

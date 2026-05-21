@@ -13,6 +13,5 @@ This section provides software architecture description, application development
    peripheral-index
    network-index
    upgrade-storage-index
-   at-virtualization-index
    multimedia-index
    appendix-index

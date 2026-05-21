@@ -1,4 +1,4 @@
-# Data DialDevelopment Guide\_Rev2.0
+# Data Call Development Guide\_Rev2.0
 
 {link_to_translation}`zh_CN:[中文]`
 
@@ -6,961 +6,941 @@
 
 | **Version** | **Date** | **Author** | **Revision Content** |
 | --- | --- | --- | --- |
-| Rev1.0 | 23-09-15 | YPP | Created Document |
-| Rev1.1 | 24-03-25 | sxx | Changed Document Name |
-| Rev1.2 | 24-10-25 | LJZ | Modified Document Format |
-| Rev1.3 | 25-04-09 | ZW | Added Section 4.16, Added Interfaceliot\_network\_register\_cereg\_get. |
-| Rev1.4 | 26-01-09 | ZLC | Added Section 4.16, AddedInterface. |
-| Rev2.0 | 26-03-03 | YMX | Modified Document Format |
+| Rev1.0 | 23-09-15 | YPP | Created document |
+| Rev1.1 | 24-03-25 | sxx | Changed document name |
+| Rev1.2 | 24-10-25 | LJZ | Modified document format |
+| Rev1.3 | 25-04-09 | ZW | Added Section 4.16, added interface liot\_network\_register\_cereg\_get. |
+| Rev1.4 | 26-01-09 | ZLC | Added Section 4.16, added new interfaces. |
+| Rev2.0 | 26-03-03 | YMX | Modified document format |
 
-## 1 Introduction
+## 1 Introduction
 
-This document mainly introduces LTE-EC71X OpenCPU Data Dial API FunctionDetails, API Located at\PLAT\middleware\lierda\_open\lierda\_api\liot\_nw\inc\liot\_datacall.h File.
-
-* **Network Registration: **liot\_network\_register\_wait(Network Registration) is automatic action after boot, but if dedicated SIM card, need to configure APN first, then control the device switch to implement network registration.
-
-* **Dial Activation: **liot\_start\_data\_call(Dial) is Manual Get Service IP Action, to implement data communication between module and base station, must perform Dial.
-
-* **Default Bearer(Default EPS Bearer): **  Cat.1 Moduleafter successful attachment usually auto-activate CID 1.
+This document provides a detailed description of the LTE-EC71X OpenCPU Data Call API functions. The API is located in the file `\PLAT\middleware\lierda_open\lierda_api\liot_nw\inc\liot_datacall.h`.
 
 
-Added
+- **Network Registration:** liot_network_register_wait (network registration) is an automatic action after power-on. However, for private network SIM cards, you need to configure the APN first, then control the device on/off to achieve network registration.
 
-## 2 API Function Overview
+- **Data Call Activation:** liot_start_data_call (dial-up) is a manual action to obtain a service IP. To enable data communication between the module and the base station, a data call must be initiated.
 
-### 2.1 Core Control
+- **Default EPS Bearer:** After successful attachment, the Cat.1 module usually automatically activates CID 1.
+
+## 2 API Function Overview
+
+### 2.1 Core Control
 
 | **Function** | **Description** |
 | --- | --- |
-| [liot\_start\_data\_call()](https://alidocs.dingtalk.com/i/nodes/G53mjyd80p7vr7OLuXe1XXn586zbX04v?utm_scene=team_space&iframeQuery=anchorId%3Duu_m05cnmy8nt6pn6uante) | Start Data Dial |
-| [liot\_stop\_data\_call()](https://alidocs.dingtalk.com/i/nodes/G53mjyd80p7vr7OLuXe1XXn586zbX04v?utm_scene=team_space&iframeQuery=anchorId%3Duu_m05cnmy9k2bxf368k4y) | Stop Data Dial |
-| [liot\_set\_data\_call\_asyn\_mode()](https://alidocs.dingtalk.com/i/nodes/G53mjyd80p7vr7OLuXe1XXn586zbX04v?utm_scene=team_space&iframeQuery=anchorId%3Duu_m05cnmy9p4eihd5eite) | Set Start and Stop Data DialFunction Execution mode |
-| [liot\_datacall\_set\_nat()](https://alidocs.dingtalk.com/i/nodes/G53mjyd80p7vr7OLuXe1XXn586zbX04v?utm_scene=team_space&iframeQuery=anchorId%3Duu_m05cnmyaj90q38qajs5) | Enable NAT Function |
+| [liot\_start\_data\_call()](#34-liot_start_data_call) | Start data call |
+| [liot\_stop\_data\_call()](#37-liot_stop_data_call) | Stop data call |
+| [liot\_set\_data\_call\_asyn\_mode()](#38-liot_set_data_call_asyn_mode) | Set execution mode for start/stop data call functions |
+| [liot\_datacall\_set\_nat()](#310-liot_datacall_set_nat) | Enable NAT function |
 
-### 2.2 Status Query
-
-| **Function** | **Description** |
-| --- | --- |
-| [liot\_get\_data\_call\_info()](https://alidocs.dingtalk.com/i/nodes/G53mjyd80p7vr7OLuXe1XXn586zbX04v?utm_scene=team_space&iframeQuery=anchorId%3Duu_m05cnmy6ftfwg06gwwa) | Get Data Dial Info |
-| [liot\_datacall\_get\_sim\_profile\_is\_active()](https://alidocs.dingtalk.com/i/nodes/G53mjyd80p7vr7OLuXe1XXn586zbX04v?utm_scene=team_space&iframeQuery=anchorId%3Duu_m05cnmy9s7f2w8vyrh) | GetCurrent PDP Context ActivateStatus |
-| [liot\_datacall\_get\_default\_pdn\_info()](https://alidocs.dingtalk.com/i/nodes/G53mjyd80p7vr7OLuXe1XXn586zbX04v?utm_scene=team_space&iframeQuery=anchorId%3Duu_m05cnmy99am1obv8sxn) | Get Default Bearer Info |
-| [liot\_network\_register\_wait()](https://alidocs.dingtalk.com/i/nodes/G53mjyd80p7vr7OLuXe1XXn586zbX04v?utm_scene=team_space&iframeQuery=anchorId%3Duu_m05cnmyabq77vglzcck) | Wait for Network Registration |
-| [liot\_network\_register\_cereg\_get()](https://alidocs.dingtalk.com/i/nodes/G53mjyd80p7vr7OLuXe1XXn586zbX04v?utm_scene=team_space&iframeQuery=anchorId%3Duu_m99qkgmyvzhmrvlvsm8) | Get Network Registration Status |
-| [liot\_datacall\_get\_nat()](https://alidocs.dingtalk.com/i/nodes/G53mjyd80p7vr7OLuXe1XXn586zbX04v?utm_scene=team_space&iframeQuery=anchorId%3Duu_m05cnmyakk3yl6y0t0r) | Query(U)SIM Card Corresponding  NAT mode |
-| [Liot\_DataCallCfgDefaultEpsBearer()](https://alidocs.dingtalk.com/i/nodes/MyQA2dXW7e7kn7ZLfpLr6reRJzlwrZgb?utm_scene=team_space&iframeQuery=anchorId%3Duu_mk6laxbges3z8sehxcw) | SetorQueryDefault Bearer(CID 1)  APN and IP Type |
-
-### 2.3 Event Handling
+### 2.2 Status Query
 
 | **Function** | **Description** |
 | --- | --- |
-| [liot\_datacall\_register\_cb()](https://alidocs.dingtalk.com/i/nodes/G53mjyd80p7vr7OLuXe1XXn586zbX04v?utm_scene=team_space&iframeQuery=anchorId%3Duu_m05cnmy4i13sb6d0s5q) | Register Data Dial Callback Function |
-| [liot\_datacall\_unregister\_cb()](https://alidocs.dingtalk.com/i/nodes/G53mjyd80p7vr7OLuXe1XXn586zbX04v?utm_scene=team_space&iframeQuery=anchorId%3Duu_m05cnmy58gyeu5iktte) | Unregister Data Dial Callback |
-| [Liot\_PsEventCb()](https://alidocs.dingtalk.com/i/nodes/MyQA2dXW7e7kn7ZLfpLr6reRJzlwrZgb?utm_scene=team_space&iframeQuery=anchorId%3Duu_mk6kgot4vwatib9xpsm) | Register System Event Callback. |
+| [liot\_get\_data\_call\_info()](#33-liot_get_data_call_info) | Get data call information |
+| [liot\_datacall\_get\_sim\_profile\_is\_active()](#36-liot_datacall_get_sim_profile_is_active) | Get current PDP context activation status |
+| [liot\_datacall\_get\_default\_pdn\_info()](#35-liot_datacall_get_default_pdn_info) | Get default bearer information |
+| [liot\_network\_register\_wait()](#39-liot_network_register_wait) | Wait for network registration result |
+| [liot\_network\_register\_cereg\_get()](#316-liot_network_register_cereg_get) | Get network registration status |
+| [liot\_datacall\_get\_nat()](#311-liot_datacall_get_nat) | Query NAT mode for (U)SIM card |
+| [Liot\_DataCallCfgDefaultEpsBearer()](#318-liot_datacallcfgdefaultepsbearer) | Set or query default bearer (CID 1) APN and IP type |
 
-### 2.4 IP Address Tools
+### 2.3 Event Handling
 
 | **Function** | **Description** |
 | --- | --- |
-| [liot\_ip4addr\_ntoa()](https://alidocs.dingtalk.com/i/nodes/G53mjyd80p7vr7OLuXe1XXn586zbX04v?utm_scene=team_space&iframeQuery=anchorId%3Duu_m05cnmyajvdoou5r1vw) | IPv4 Address to String |
-| [liot\_ip6addr\_ntoa()](https://alidocs.dingtalk.com/i/nodes/G53mjyd80p7vr7OLuXe1XXn586zbX04v?utm_scene=team_space&iframeQuery=anchorId%3Duu_m05cnmyaco6qat24n8a) | IPv6 Address to String |
-| [liot\_ip4addr\_aton()](https://alidocs.dingtalk.com/i/nodes/G53mjyd80p7vr7OLuXe1XXn586zbX04v?utm_scene=team_space&iframeQuery=anchorId%3Duu_m05cnmyb2h5pirf174q) | IPv4 String to Address |
-| [liot\_ip6addr\_aton()](https://alidocs.dingtalk.com/i/nodes/G53mjyd80p7vr7OLuXe1XXn586zbX04v?utm_scene=team_space&iframeQuery=anchorId%3Duu_m05cnmyb5xf6ko5tnof) | IPv6 String to Address |
+| [liot\_datacall\_register\_cb()](#31-liot_datacall_register_cb) | Register data call callback function |
+| [liot\_datacall\_unregister\_cb()](#32-liot_datacall_unregister_cb) | Unregister data call callback function |
+| [Liot\_PsEventCb()](#317-liot_pseventcb) | Register system event notification callback |
 
-## 3 API FunctionDetails
+### 2.4 IP Address Utilities
 
-### 3.1 liot\_datacall\_register\_cb
+| **Function** | **Description** |
+| --- | --- |
+| [liot\_ip4addr\_ntoa()](#312-liot_ip4addr_ntoa) | Convert IPv4 address to string |
+| [liot\_ip6addr\_ntoa()](#313-liot_ip6addr_ntoa) | Convert IPv6 address to string |
+| [liot\_ip4addr\_aton()](#314-liot_ip4addr_aton) | Convert string to IPv4 address |
+| [liot\_ip6addr\_aton()](#315-liot_ip6addr_aton) | Convert string to IPv6 address |
 
-This function is used forRegister Data Dial Callback Function. Whether async or sync mode, need to register callbackreports network deactivation/detach events, can initiate re-Dial on event.
+## 3 API Function Details
 
-* **Declaration**
+### 3.1 liot\_datacall\_register\_cb
+
+This function registers a callback for data call events. Whether in asynchronous or synchronous mode, a callback must be registered to report network-initiated deactivation or detach events. Upon receiving such events, a re-dial process can be initiated.
+
+*   **Declaration**
 
     ```c
-liot_datacall_errcode_e liot_datacall_register_cb(uint8_t nSim, int profile_idx, liot_datacall_callback datacall_cb, void *ctx)
+    liot_datacall_errcode_e liot_datacall_register_cb(uint8_t nSim, int profile_idx, liot_datacall_callback datacall_cb, void *ctx)
     ```
 
-* **Parameter**
+*   **Parameters**
+
+    nSim:
+
+    \[In\] The (U)SIM card in use. If the module supports only 1 (U)SIM interface, this parameter can be set to 0. Value range: 0-1 or 0xFF.
+
+    profile\_idx:
+
+    \[In\] PDP context ID. Range: 1~7 or 0xFF.
+
+    datacall\_cb:
+
+    \[In\] The callback function to register. See Section [3.1.1](#311-liot_datacall_callback).
+
+    ctx:
+
+    \[In\] Pointer to callback function parameter.
+
+*   **Return Value**
+
+See Section [3.1.2](#312-liot_datacall_errcode_e).
+#### 3.1.1 liot\_datacall\_callback
+
+This callback function reports data call events.
+
+*   **Declaration**
+
+    ```c
+    typedef void (*liot_datacall_callback)(uint8_t nSim, unsigned int ind_type, int profile_idx, bool result, void *ctx);
+    ```
+
+*   **Parameters**
 
 nSim:
 
-\[In\] Used (U)SIM Card, IfModuleonly supports 1 (U)SIM Interface, This Parameter Canset to 0, value: 0-1 or 0xFF.
-
-profile\_idx:
-
-\[In\] PDP Context ID, Range: 1~7 or 0xFF.
-
-datacall\_cb:
-
-\[In\] Callback to Register. See Section [4.1.1](https://alidocs.dingtalk.com/i/nodes/G53mjyd80p7vr7OLuXe1XXn586zbX04v?utm_scene=team_space&iframeQuery=anchorId%3Duu_m05cnmy4h4ajit077cw) .
-
-ctx:
-
-\[In\] Callback Parameter Pointer.
-
-* **Return Value**
-
-
-See Section [4.1.2](https://lierda.feishu.cn/docx/VB8ndMgiAotqJ3xjEgicmMpanud?contentTheme=DARK&amp;theme=LIGHT#ARm3dgj7bohdakxsTugccXUkn1c) .
-
-#### 3.1.1 liot\_datacall\_callback
-
-This callback reports data Dial events.
-
-* **Declaration**
-
-    ```c
-typedef void (*liot_datacall_callback)(uint8_t nSim, unsigned int ind_type, int profile_idx, bool result, void *ctx);
-    ```
-
-* **Parameter**
-
-
-nSim:
-
-\[In\] Used (U)SIM Card, IfModuleonly supports 1 (U)SIM Interface, This Parameter Canset to 0, value: 0-1 or 0xFF.
+\[In\] The (U)SIM card in use. If the module supports only 1 (U)SIM interface, this parameter can be set to 0. Value range: 0-1 or 0xFF.
 
 ind\_type:
 
-\[In\] Data Dial Event Type.
+\[In\] Data call event type.
 
 | **Event** | **Description** |
 | --- | --- |
-| LIOT\_DAT ACALL\_ACT\_RSP\_IND | In async mode PDP Activate Result Response Event |
-| LIOT\_DAT ACALL\_DEACT\_RSP\_IND | In async mode PDP Deactivate Result Response Event |
-| LIOT\_DAT ACALL\_PDP\_DEACTIVE\_IND | PDP Network Deactivationor Detach Event |
+| LIOT\_DATACALL\_ACT\_RSP\_IND | PDP activation result response event in asynchronous mode |
+| LIOT\_DATACALL\_DEACT\_RSP\_IND | PDP deactivation result response event in asynchronous mode |
+| LIOT\_DATACALL\_PDP\_DEACTIVE\_IND | PDP network-initiated deactivation or detach event |
 
 profile\_idx:
 
-\[In\] PDP Context ID, Range: 1~7 or 0xFF.
+\[In\] PDP context ID. Range: 1~7 or 0xFF.
 
 result:
 
-\[In\] PDP Context Activate and Deactivate Result, 0 Failure, 1 Success.
+\[In\] PDP context activation/deactivation result. 0: failure, 1: success.
 
 ctx:
 
-\[In\] Callback Parameter Pointer.
+\[In\] Pointer to callback function parameter.
 
-#### 3.1.2 liot\_datacall\_errcode\_e
+#### 3.1.2 liot\_datacall\_errcode\_e
 
-Data Dial API Execution Result Error Codes.
+Data call API execution result error codes.
 
-* **Declaration**
+*   **Declaration**
 
     ```c
-typedef enum{
-LIOT_DAT ACALL_SUCCESS = 0,
-LIOT_DAT ACALL_EXECUTE_ERR = 1 | LIOT_DAT ACALL_ERRCODE_BASE,
-LIOT_DAT ACALL_MEM_ADDR_NULL_ERR,
-LIOT_DAT ACALL_INVALID_PARAM_ERR,
-LIOT_DAT ACALL_NW_REGISTER_TIMEOUT_ERR,
-LIOT_DAT ACALL_CFW_ACT_STAT E_GET_ERR = 5 | LIOT_DAT ACALL_ERRCODE_BASE, LIOT_DAT ACALL_REPEAT_ACTIVE_ERR,
-LIOT_DAT ACALL_REPEAT_DEACTIVE_ERR,
-LIOT_DAT ACALL_CFW_PDP_CTX_SET_ERR,
-LIOT_DAT ACALL_CFW_PDP_CTX_GET_ERR,
-LIOT_DAT ACALL_CS_CALL_ERR = 10 | LIOT_DAT ACALL_ERRCODE_BASE,
-LIOT_DAT ACALL_CFW_CFUN_GET_ERR,
-LIOT_DAT ACALL_CFUN_DISABLE_ERR,
-LIOT_DAT ACALL_NW_STAT US_GET_ERR,
-LIOT_DAT ACALL_NOT_REGISTERED_ERR,
-LIOT_DAT ACALL_NO_MEM_ERR = 15 | LIOT_DAT ACALL_ERRCODE_BASE,
-LIOT_DAT ACALL_CFW_AT TACH_STAT US_GET_ERR,
-LIOT_DAT ACALL_SEMAPHORE_CREAT E_ERR,
-LIOT_DAT ACALL_SEMAPHORE_TIMEOUT_ERR,
-LIOT_DAT ACALL_CFW_AT TACH_REQUEST_ERR,
-LIOT_DAT ACALL_CFW_ACTIVE_REQUEST_ERR = 20 | LIOT_DAT ACALL_ERRCODE_BASE,
-LIOT_DAT ACALL_ACTIVE_FAI L_ERR,
-LIOT_DAT ACALL_CFW_DEACTIVE_REQUEST_ERR,
-LIOT_DAT ACALL_NO_DFTP DN_CFG_CONTEXT,
-LIOT_DAT ACALL_NO_DFTP DN_INFO_CONTEXT,
-} liot_datacall_errcode_e;
+    typedef enum{
+      LIOT_DATACALL_SUCCESS     = 0,
+      LIOT_DATACALL_EXECUTE_ERR = 1 | LIOT_DATACALL_ERRCODE_BASE,
+      LIOT_DATACALL_MEM_ADDR_NULL_ERR,
+      LIOT_DATACALL_INVALID_PARAM_ERR,
+      LIOT_DATACALL_NW_REGISTER_TIMEOUT_ERR,
+      LIOT_DATACALL_CFW_ACT_STATE_GET_ERR = 5 | LIOT_DATACALL_ERRCODE_BASE,    LIOT_DATACALL_REPEAT_ACTIVE_ERR,
+      LIOT_DATACALL_REPEAT_DEACTIVE_ERR,
+      LIOT_DATACALL_CFW_PDP_CTX_SET_ERR,
+      LIOT_DATACALL_CFW_PDP_CTX_GET_ERR,
+      LIOT_DATACALL_CS_CALL_ERR = 10 | LIOT_DATACALL_ERRCODE_BASE,
+      LIOT_DATACALL_CFW_CFUN_GET_ERR,
+      LIOT_DATACALL_CFUN_DISABLE_ERR,
+      LIOT_DATACALL_NW_STATUS_GET_ERR,
+      LIOT_DATACALL_NOT_REGISTERED_ERR,
+      LIOT_DATACALL_NO_MEM_ERR = 15 | LIOT_DATACALL_ERRCODE_BASE,
+      LIOT_DATACALL_CFW_ATTACH_STATUS_GET_ERR,
+      LIOT_DATACALL_SEMAPHORE_CREATE_ERR,
+      LIOT_DATACALL_SEMAPHORE_TIMEOUT_ERR,
+      LIOT_DATACALL_CFW_ATTACH_REQUEST_ERR,
+      LIOT_DATACALL_CFW_ACTIVE_REQUEST_ERR = 20 | LIOT_DATACALL_ERRCODE_BASE,
+      LIOT_DATACALL_ACTIVE_FAIL_ERR,
+      LIOT_DATACALL_CFW_DEACTIVE_REQUEST_ERR,
+      LIOT_DATACALL_NO_DFTPDN_CFG_CONTEXT,
+      LIOT_DATACALL_NO_DFTPDN_INFO_CONTEXT,
+    } liot_datacall_errcode_e;
     ```
 
-* **Parameter**
-
+*   **Parameters**
 
 | **Parameter** | **Description** |
 | --- | --- |
-| LIOT\_DAT ACALL\_SUCCESS | ExecuteSuccess |
-| LIOT\_DAT ACALL\_EXECUTE\_ERR | ExecuteFailure |
-| LIOT\_DAT ACALL\_MEM\_ADDR\_NULL\_ERR | Parameter Address is NULL |
-| LIOT\_DAT ACALL\_INVALID\_PARAM\_ERR | Parameter is invalid |
-| LIOT\_DAT ACALL\_NW\_REGISTER\_TIMEOUT\_ERR | Network RegistrationTimeout |
-| LIOT\_DAT ACALL\_CFW\_ACT\_STAT E\_GET\_ERR | Get PDP Context ActivateStatusFailure |
-| LIOT\_DAT ACALL\_REPEAT\_ACTIVE\_ERR | Repeated PDP Context Activation |
-| LIOT\_DAT ACALL\_REPEAT\_DEACTIVE\_ERR | Repeated PDP Context Deactivation |
-| LIOT\_DAT ACALL\_CFW\_PDP\_CTX\_SET\_ERR | Set PDP ContextFailure |
-| LIOT\_DAT ACALL\_CFW\_PDP\_CTX\_GET\_ERR | Get PDP ContextFailure |
-| LIOT\_DAT ACALL\_CS\_CALL\_ERR | Ongoing call causes data business operation failure |
-| LIOT\_DAT ACALL\_CFW\_CFUN\_GET\_ERR | GetFunctionmodeFailure |
-| LIOT\_DAT ACALL\_CFUN\_DISABLE\_ERR | Non-full function mode causes data business operation failure |
-| LIOT\_DAT ACALL\_NW\_STAT US\_GET\_ERR | Get Network Registration StatusFailure |
-| LIOT\_DAT ACALL\_NOT\_REGISTERED\_ERR | Network not registered |
-| LIOT\_DAT ACALL\_NO\_MEM\_ERR | Memory request failure |
-| LIOT\_DAT ACALL\_CFW\_AT TACH\_STAT US\_GET\_ERR | GetNetworkattachmentStatusFailure |
-| LIOT\_DAT ACALL\_SEMAPHORE\_CREAT E\_ERR | Semaphore creation failure |
-| LIOT\_DAT ACALL\_SEMAPHORE\_TIMEOUT\_ERR | Semaphore wait timeout |
-| LIOT\_DAT ACALL\_CFW\_AT TACH\_REQUEST\_ERR | Network attachment rejected |
-| LIOT\_DAT ACALL\_CFW\_ACTIVE\_REQUEST\_ERR | PDP Context Activation Rejected |
-| LIOT\_DAT ACALL\_ACTIVE\_FAI L\_ERR | PDP Context ActivateFailure |
-| LIOT\_DAT ACALL\_CFW\_DEACTIVE\_REQUEST\_ERR | PDP Context Deactivation Rejected |
-| LIOT\_DAT ACALL\_NO\_DFTP DN\_CFG\_CONTEXT | not configuredDefault BearerContext |
-| LIOT\_DAT ACALL\_NO\_DFTP DN\_INFO\_CONTEXT | NoneDefault BearerContextInformation |
+| LIOT\_DATACALL\_SUCCESS | Execution successful |
+| LIOT\_DATACALL\_EXECUTE\_ERR | Execution failed |
+| LIOT\_DATACALL\_MEM\_ADDR\_NULL\_ERR | Parameter address is NULL |
+| LIOT\_DATACALL\_INVALID\_PARAM\_ERR | Invalid parameter |
+| LIOT\_DATACALL\_NW\_REGISTER\_TIMEOUT\_ERR | Network registration timeout |
+| LIOT\_DATACALL\_CFW\_ACT\_STATE\_GET\_ERR | Failed to get PDP context activation status |
+| LIOT\_DATACALL\_REPEAT\_ACTIVE\_ERR | Repeated PDP context activation |
+| LIOT\_DATACALL\_REPEAT\_DEACTIVE\_ERR | Repeated PDP context deactivation |
+| LIOT\_DATACALL\_CFW\_PDP\_CTX\_SET\_ERR | Failed to set PDP context |
+| LIOT\_DATACALL\_CFW\_PDP\_CTX\_GET\_ERR | Failed to get PDP context |
+| LIOT\_DATACALL\_CS\_CALL\_ERR | Data operation failed due to ongoing voice call |
+| LIOT\_DATACALL\_CFW\_CFUN\_GET\_ERR | Failed to get function mode |
+| LIOT\_DATACALL\_CFUN\_DISABLE\_ERR | Data operation failed due to non-full function mode |
+| LIOT\_DATACALL\_NW\_STATUS\_GET\_ERR | Failed to get network registration status |
+| LIOT\_DATACALL\_NOT\_REGISTERED\_ERR | Network not registered |
+| LIOT\_DATACALL\_NO\_MEM\_ERR | Memory allocation failed |
+| LIOT\_DATACALL\_CFW\_ATTACH\_STATUS\_GET\_ERR | Failed to get network attach status |
+| LIOT\_DATACALL\_SEMAPHORE\_CREATE\_ERR | Failed to create semaphore |
+| LIOT\_DATACALL\_SEMAPHORE\_TIMEOUT\_ERR | Semaphore wait timeout |
+| LIOT\_DATACALL\_CFW\_ATTACH\_REQUEST\_ERR | Network attach rejected |
+| LIOT\_DATACALL\_CFW\_ACTIVE\_REQUEST\_ERR | PDP context activation rejected |
+| LIOT\_DATACALL\_ACTIVE\_FAIL\_ERR | PDP context activation failed |
+| LIOT\_DATACALL\_CFW\_DEACTIVE\_REQUEST\_ERR | PDP context deactivation rejected |
+| LIOT\_DATACALL\_NO\_DFTPDN\_CFG\_CONTEXT | Default bearer context not configured |
+| LIOT\_DATACALL\_NO\_DFTPDN\_INFO\_CONTEXT | No default bearer context information |
+### 3.2 liot\_datacall\_unregister\_cb
 
-### 3.2 liot\_datacall\_unregister\_cb
+This function is used to cancel the callback function registered via liot\_datacall\_register\_cb(). After cancellation, the callback function will no longer receive data call related events.
 
-This function is used to unregister the liot\_datacall\_register\_cb() registered callback function. After unregistering, the callback function will no longer receive data dial related events.
-
-* **Function**
+*   **Function**
 
     ```c
-liot_datacall_errcode_e liot_datacall_unregister_cb(uint8_t nSim, int profile_idx, liot_datacall_callback datacalliot_cb, void *ctx);
+    liot_datacall_errcode_e liot_datacall_unregister_cb(uint8_t nSim, int profile_idx, liot_datacall_callback datacalliot_cb, void *ctx);
     ```
 
-* **Parameter**
+*   **Parameters**
 
-nSim:
+    nSim:
 
-\[In\] Used  (U)SIM Card, IfModuleonly supports 1  (U)SIM Interface, This Parameter Canset to 0, value: 0-1 or 0xFF.
+    \[In\] The (U)SIM card in use. If the module supports only 1 (U)SIM interface, this parameter can be set to 0. Value range: 0-1 or 0xFF.
 
-profile\_idx:
+    profile\_idx:
 
-\[In\] PDP Context ID, Range: 1~7 or 0xFF.
+    \[In\] PDP context ID. Range: 1~7 or 0xFF.
 
-datacall\_cb:
+    datacall\_cb:
 
-\[In\] Callback to Register. See Section [4.1.1](https://alidocs.dingtalk.com/i/nodes/G53mjyd80p7vr7OLuXe1XXn586zbX04v?utm_scene=team_space&iframeQuery=anchorId%3Duu_m05cnmy4h4ajit077cw) .
+    \[In\] The callback function to unregister. See Section [3.1.1](#311-liot_datacall_callback).
 
-ctx:
+    ctx:
 
-\[In\] Callback Parameter Pointer.
+    \[In\] Pointer to callback function parameter.
 
-* **Return Value**
+*   **Return Value**
 
-See Section [4.1.2](https://alidocs.dingtalk.com/i/nodes/G53mjyd80p7vr7OLuXe1XXn586zbX04v?utm_scene=team_space&iframeQuery=anchorId%3Duu_m05cnmy4qjcee3sytq4) .
+    See Section [3.1.2](#312-liot_datacall_errcode_e).
 
-## 3.3 liot\_get\_data\_call\_info
+## 3.3 liot\_get\_data\_call\_info
 
-This function is used forGet Data Dial Info.
+This function is used to get data call information.
 
-* **Function**
+*   **Function**
 
-    ```c
+```c
 liot_datacall_errcode_e liot_get_data_call_info(UINT8 nSim, INT32 profile_idx, liot_data_call_info_t *call_info);
-    ```
+```
 
-* **Parameter**
+*   **Parameters**
 
 nSim:
 
-\[In\] Used  (U)SIM Card. IfModuleonly supports 1  (U)SIM Interface, This Parameter Canset to 0. Value: 0-1.
+\[In\] The (U)SIM card in use. If the module supports only 1 (U)SIM interface, this parameter can be set to 0. Value range: 0-1.
 
 profile\_idx:
 
-\[In\] PDP Context ID, Range: 1~7.
+\[In\] PDP context ID. Range: 1~7.
 
 call\_info:
 
-\[Out\] Data DialInformation. See Section [4.3.1](https://alidocs.dingtalk.com/i/nodes/G53mjyd80p7vr7OLuXe1XXn586zbX04v?utm_scene=team_space&iframeQuery=anchorId%3Duu_m05cnmy6nva7m0yvbd0) .
+\[Out\] Data call information. See Section [3.3.1](#331-liot_data_call_info_t).
 
-* **Return Value**
+*   **Return Value**
 
-See Section [4.1.2](https://alidocs.dingtalk.com/i/nodes/G53mjyd80p7vr7OLuXe1XXn586zbX04v?utm_scene=team_space&iframeQuery=anchorId%3Duu_m05cnmy4qjcee3sytq4) .
+See Section [3.1.2](#312-liot_datacall_errcode_e).
+**3.3.1 liot\_data\_call\_info\_t**
 
-**3.3.1 liot\_data\_call\_info\_t**
+Data call information.
 
-Data DialInformation.
+*   **Declaration**
 
-* **Declaration**
-
-    ```c
+```c
 typedef struct{
-INT32 cid;
-INT32 ip_version;
-liot_v4_info v4;
-liot_v6_info v6;
-char apn_name[LIOT_APN_LEN_MAX];
+  INT32 cid;
+  INT32 ip_version;
+  liot_v4_info v4;
+  liot_v6_info v6;
+  char apn_name[LIOT_APN_LEN_MAX];
 } liot_data_call_info_t;
-    ```
+```
 
-* **Parameter**
-
-| **Parameter** | **Type** | **Description** |
-    | --- | --- | --- |
-| cid | INT32 | PDP Context ID. Range: 1~7. |
-| ip\_version | INT32 | IP Type. <br>1    IP v4<br>2    IP v6<br>3    IP v4v6 |
-| v4 | struct liot\_v4\_info | IP v4 Information. See Section [4.3.2](https://alidocs.dingtalk.com/i/nodes/G53mjyd80p7vr7OLuXe1XXn586zbX04v?utm_scene=team_space&iframeQuery=anchorId%3Duu_m05cnmy6lt4b2dae99r) . |
-| v6 | struct liot\_v6\_info | IP v6 Information. See Section [4.3.5](https://alidocs.dingtalk.com/i/nodes/G53mjyd80p7vr7OLuXe1XXn586zbX04v?utm_scene=team_space&iframeQuery=anchorId%3Duu_m05cnmy7sy9pcxyqrn) . |
-| apn\_name | char | APN name, string, max length 64. |
-
-**3.3.2 liot\_v4\_info**
-
-IP v4 Information.
-
-* **Declaration**
-
-    ```c
-typedef struct
-{
-INT32 state; // Dial status
-liot_v4_address_status addr; // IP v4 address information
-} liot_v4_info;
-    ```
-
-* **Parameter**
-
-| **Parameter** | **Type** | **Description** |
-    | --- | --- | --- |
-| state | INT32 | Dial Status. <br>0    Not dialed<br>1    Dial succeeded |
-| addr | struct liot\_v4\_address\_status | IP v4 AddressStatus. See Section [4.3.3](https://alidocs.dingtalk.com/i/nodes/G53mjyd80p7vr7OLuXe1XXn586zbX04v?utm_scene=team_space&iframeQuery=anchorId%3Duu_m05cnmy7h8qtx414jqq) . |
-
-**3.3.3 liot\_v4\_address\_status**
-
-IP v4 AddressStatus.
-
-* **Declaration**
-
-    ```c
-typedef struct
-{
-liot_ip4_addr_t ip;
-liot_ip4_addr_t pri_dns;
-liot_ip4_addr_t sec_dns;
-} liot_v4_address_status;
-    ```
-
-* **Parameter**
-
-| **Parameter** | **Type** | **Description** |
-    | --- | --- | --- |
-| ip | struct liot\_ip4\_addr\_t | Get  IP v4 Address. See Section [4.3.4](https://alidocs.dingtalk.com/i/nodes/G53mjyd80p7vr7OLuXe1XXn586zbX04v?utm_scene=team_space&iframeQuery=anchorId%3Duu_m05cnmy7rc13sv3enfs) . |
-| pri\_dns | struct liot\_ip4\_addr\_t | Primary DNS server IP v4 Address. See Section [4.3.4](https://alidocs.dingtalk.com/i/nodes/G53mjyd80p7vr7OLuXe1XXn586zbX04v?utm_scene=team_space&iframeQuery=anchorId%3Duu_m05cnmy7rc13sv3enfs)  . |
-| sec\_dns | struct liot\_ip4\_addr\_t | Secondary DNS server IP v4 Address. See Section [4.3.4](https://alidocs.dingtalk.com/i/nodes/G53mjyd80p7vr7OLuXe1XXn586zbX04v?utm_scene=team_space&iframeQuery=anchorId%3Duu_m05cnmy7rc13sv3enfs) . |
-
-**3.3.4 liot\_ip4\_addr\_t**
-
-IP v4 Address.
-
-* **Declaration**
-
-    ```c
-typedef struct
-{
-UINT32 addr;
-} liot_ip4_addr_t;
-    ```
-
-* **Parameter**
-
-| **Parameter** | **Type** | **Description** |
-    | --- | --- | --- |
-| addr | UINT32 | IP v4 Address. |
-
-**3.3.5 liot\_v6\_info**
-
-IP v6 Information.
-
-* **Declaration**
-
-    ```c
-typedef struct
-{
-INT32 state; // Dial status
-liot_v6_address_status addr; // IP v6 address information
-} liot_v6_info;
-    ```
-
-* **Parameter**
-
-| **Parameter** | Type | **Description** |
-    | --- | --- | --- |
-| state | INT32 | Dial Status. <br>0    Not dialed<br>1    Dial succeeded |
-| addr | struct liot\_v6\_address\_status | IP v6 AddressStatus. See Section [4.3.6](https://alidocs.dingtalk.com/i/nodes/G53mjyd80p7vr7OLuXe1XXn586zbX04v?utm_scene=team_space&iframeQuery=anchorId%3Duu_m05cnmy7c2ddzgrlm7t) . |
-
-**3.3.6 liot\_v6\_address\_status**
-
-IP v6 AddressStatus.
-
-* **Declaration**
-
-    ```c
-typedef struct
-{
-liot_ip6_addr_t ip;
-liot_ip6_addr_t pri_dns;
-liot_ip6_addr_t sec_dns;
-} liot_v6_address_status;
-    ```
-
-* **Parameter**
-
-| **Parameter** | **Type** | **Description** |
-    | --- | --- | --- |
-| ip | struct liot\_ip6\_addr\_t | Get  IP v6 Address. See Section [4.3.7](https://alidocs.dingtalk.com/i/nodes/G53mjyd80p7vr7OLuXe1XXn586zbX04v?utm_scene=team_space&iframeQuery=anchorId%3Duu_m05cnmy8irk4wwc4jfg) . |
-| pri\_dns | struct liot\_ip6\_addr\_t | Primary DNS server IP v6 Address. See Section [4.3.7](https://alidocs.dingtalk.com/i/nodes/G53mjyd80p7vr7OLuXe1XXn586zbX04v?utm_scene=team_space&iframeQuery=anchorId%3Duu_m05cnmy8irk4wwc4jfg) . |
-| sec\_dns | struct liot\_ip6\_addr\_t | Secondary DNS server IP v6 Address. See Section [4.3.7](https://alidocs.dingtalk.com/i/nodes/G53mjyd80p7vr7OLuXe1XXn586zbX04v?utm_scene=team_space&iframeQuery=anchorId%3Duu_m05cnmy8irk4wwc4jfg) . |
-
-**3.3.7 liot\_ip6\_addr\_t**
-
-IP v6 Address.
-
-* **Declaration**
-
-    ```c
-typedef struct
-{
-UINT32 addr[4];
-} liot_ip6_addr_t;
-    ```
-
-* **Parameter**
-
+*   **Parameters**
 
 | **Parameter** | **Type** | **Description** |
 | --- | --- | --- |
-| addr | UINT32 | IP v6 Address, size is 4 bytes. |
+| cid | INT32 | PDP context ID. Range: 1~7. |
+| ip\_version | INT32 | IP type.<br>1    IPv4<br>2    IPv6<br>3    IPv4v6 |
+| v4 | struct liot\_v4\_info | IPv4 information. See Section [3.3.2](#332-liot_v4_info). |
+| v6 | struct liot\_v6\_info | IPv6 information. See Section [3.3.5](#335-liot_v6_info). |
+| apn\_name | char | APN name, maximum string length is 64. |
 
-### 3.4 liot\_start\_data\_call
+**3.3.2 liot\_v4\_info**
 
-This function is used to start data dial. default is sync mode, for async mode please use liot\_set\_data\_call\_asyn\_mode() to set. Difference between sync mode and async mode is as follows:
+IPv4 information.
 
-1. Syncmode: After function execution ends, returns data dial result codes, If returns LIOT\_DAT ACALL\_SUCCESS it means data dial succeeded, Getto IP Address, Canperform socket communication.
+*   **Declaration**
 
+```c
+typedef struct
+{
+  INT32 state;                 // dial status
+  liot_v4_address_status addr; // IPv4 address information
+} liot_v4_info;
+```
 
-2. Async Mode: After function execution ends, returns function execution result codes, If returns LIOT\_DAT ACALL\_SUCCESS does not mean data dial succeeded, only means function executed successfully, registered callback function will through LIOT\_DAT ACALL\_ACT\_RSP\_IND Event notifies upper layer whether dial succeeded.
+*   **Parameters**
 
+| **Parameter** | **Type** | **Description** |
+| --- | --- | --- |
+| state | INT32 | Dial status.<br>0    Not dialed<br>1    Dial successful |
+| addr | struct liot\_v4\_address\_status | IPv4 address status. See Section [3.3.3](#333-liot_v4_address_status). |
 
-* **Declaration**
+**3.3.3 liot\_v4\_address\_status**
 
-    ```c
+IPv4 address status.
+
+*   **Declaration**
+
+```c
+typedef struct
+{
+  liot_ip4_addr_t ip;
+  liot_ip4_addr_t pri_dns;
+  liot_ip4_addr_t sec_dns;
+} liot_v4_address_status;
+```
+
+*   **Parameters**
+
+| **Parameter** | **Type** | **Description** |
+| --- | --- | --- |
+| ip | struct liot\_ip4\_addr\_t | Obtained IPv4 address. See Section [3.3.4](#334-liot_ip4_addr_t). |
+| pri\_dns | struct liot\_ip4\_addr\_t | Primary DNS server IPv4 address. See Section [3.3.4](#334-liot_ip4_addr_t). |
+| sec\_dns | struct liot\_ip4\_addr\_t | Secondary DNS server IPv4 address. See Section [3.3.4](#334-liot_ip4_addr_t). |
+**3.3.4 liot\_ip4\_addr\_t**
+
+IPv4 address.
+
+*   **Declaration**
+
+```c
+typedef struct
+{
+  UINT32 addr;
+} liot_ip4_addr_t;
+```
+
+*   **Parameters**
+
+| **Parameter** | **Type** | **Description** |
+| --- | --- | --- |
+| addr | UINT32 | IPv4 address. |
+
+**3.3.5 liot\_v6\_info**
+
+IPv6 information.
+
+*   **Declaration**
+
+```c
+typedef struct
+{
+  INT32 state;                 // dial status
+  liot_v6_address_status addr; // IPv6 address information
+} liot_v6_info;
+```
+
+*   **Parameters**
+
+| **Parameter** | Type | **Description** |
+| --- | --- | --- |
+| state | INT32 | Dial status.<br>0    Not dialed<br>1    Dial successful |
+| addr | struct liot\_v6\_address\_status | IPv6 address status. See Section [3.3.6](#336-liot_v6_address_status). |
+
+**3.3.6 liot\_v6\_address\_status**
+
+IPv6 address status.
+
+*   **Declaration**
+
+```c
+typedef struct
+{
+  liot_ip6_addr_t ip;
+  liot_ip6_addr_t pri_dns;
+  liot_ip6_addr_t sec_dns;
+} liot_v6_address_status;
+```
+
+*   **Parameters**
+
+| **Parameter** | **Type** | **Description** |
+| --- | --- | --- |
+| ip | struct liot\_ip6\_addr\_t | Obtained IPv6 address. See Section [3.3.7](#337-liot_ip6_addr_t). |
+| pri\_dns | struct liot\_ip6\_addr\_t | Primary DNS server IPv6 address. See Section [3.3.7](#337-liot_ip6_addr_t). |
+| sec\_dns | struct liot\_ip6\_addr\_t | Secondary DNS server IPv6 address. See Section [3.3.7](#337-liot_ip6_addr_t). |
+
+**3.3.7 liot\_ip6\_addr\_t**
+
+IPv6 address.
+
+*   **Declaration**
+
+```c
+typedef struct
+{
+  UINT32 addr[4];
+} liot_ip6_addr_t;
+```
+
+*   **Parameters**
+
+| **Parameter** | **Type** | **Description** |
+| --- | --- | --- |
+| addr | UINT32 | IPv6 address, size is 4 bytes. |
+### 3.4 liot\_start\_data\_call
+
+This function is used to start a data call. The default mode is synchronous. To use asynchronous mode, configure it via liot\_set\_data\_call\_asyn\_mode(). The difference between synchronous and asynchronous modes is as follows:
+
+1.  Synchronous mode: After function execution, it returns the data call result code. If LIOT\_DATACALL\_SUCCESS is returned, the data call is successful, an IP address has been obtained, and socket communication can proceed.
+
+2.  Asynchronous mode: After function execution, it returns the function execution result code. If LIOT\_DATACALL\_SUCCESS is returned, it does NOT mean the data call is successful — it only means the function executed successfully. The registered callback function will notify the upper layer whether the dial was successful via the LIOT\_DATACALL\_ACT\_RSP\_IND event.
+
+*   **Declaration**
+
+```c
 liot_datacall_errcode_e liot_start_data_call(UINT8 nSim, INT32 cid, INT32 ip_version, CHAR *apn_name, CHAR *username, CHAR *password, INT32 auth_type);
-    ```
+```
 
-* **Parameter**
+*   **Parameters**
 
 nSim:
 
-\[In\] Used  (U)SIM Card. IfModuleonly supports 1  (U)SIM Interface, This Parameter Canset to 0. Value: 0-1.
+\[In\] The (U)SIM card in use. If the module supports only 1 (U)SIM interface, this parameter can be set to 0. Value range: 0-1.
 
 cid:
 
-\[In\] PDP Context ID, Range: 1~7.
+\[In\] PDP context ID. Range: 1~7.
 
 ip\_version:
 
-\[In\] IP Version: 1 IP v4, 2 IP v6, 3 IP v4v6.
+\[In\] IP version: 1 IPv4, 2 IPv6, 3 IPv4v6.
 
 apn\_name:
 
-\[In\] APN name.
+\[In\] APN name.
 
 username:
 
-\[In\] User name.
+\[In\] Username.
 
 password:
 
-\[In\] User password.
+\[In\] Password.
 
 auth\_type:
 
-\[In\] Authentication type. See Section [4.4.1](https://alidocs.dingtalk.com/i/nodes/G53mjyd80p7vr7OLuXe1XXn586zbX04v?utm_scene=team_space&iframeQuery=anchorId%3Duu_m05cnmy83sf8j29dr98) .
+\[In\] Authentication type. See Section [3.4.1](#341-liot_data_auth_type_e).
 
-* **Return Value**
+*   **Return Value**
 
-See Section [4.1.2](https://alidocs.dingtalk.com/i/nodes/G53mjyd80p7vr7OLuXe1XXn586zbX04v?utm_scene=team_space&iframeQuery=anchorId%3Duu_m05cnmy4qjcee3sytq4) .
+See Section [3.1.2](#312-liot_datacall_errcode_e).
 
-### 3.4.1 liot\_data\_auth\_type\_e
+### 3.4.1 liot\_data\_auth\_type\_e
 
 Authentication type.
 
-* **Declaration**
+*   **Declaration**
 
-    ```c
+```c
 typedef enum
 {
-LIOT_DAT A_AUTH_TYPE_AUTO = 0xFF,
-LIOT_DAT A_AUTH_TYPE_NONE = 0,
-LIOT_DAT A_AUTH_TYPE_PAP,
-LIOT_DAT A_AUTH_TYPE_CHAP,
+  LIOT_DATA_AUTH_TYPE_AUTO = 0xFF,
+  LIOT_DATA_AUTH_TYPE_NONE = 0,
+  LIOT_DATA_AUTH_TYPE_PAP,
+  LIOT_DATA_AUTH_TYPE_CHAP,
 } liot_data_auth_type_e;
-    ```
+```
 
-* **Parameter**
+*   **Parameters**
 
 | **Parameter** | **Description** |
-    | --- | --- |
-| LIOT\_DAT A\_AUTH\_TYPE\_AUTO | Automatically select PAP or CHAP authentication protocol |
-| LIOT\_DAT A\_AUTH\_TYPE\_NONE | No authentication protocol |
-| LIOT\_DAT A\_AUTH\_TYPE\_PAP | PAP authentication protocol |
-| LIOT\_DAT A\_AUTH\_TYPE\_CHAP | CHAP authentication protocol |
+| --- | --- |
+| LIOT\_DATA\_AUTH\_TYPE\_AUTO | Automatically select PAP or CHAP authentication protocol |
+| LIOT\_DATA\_AUTH\_TYPE\_NONE | No authentication protocol |
+| LIOT\_DATA\_AUTH\_TYPE\_PAP | PAP authentication protocol |
+| LIOT\_DATA\_AUTH\_TYPE\_CHAP | CHAP authentication protocol |
+## 3.5 liot\_datacall\_get\_default\_pdn\_info
 
-## 3.5 liot\_datacall\_get\_default\_pdn\_info
+This function is used to get default bearer information.
 
-This function is used forGet Default Bearer Info.
+*   **Declaration**
 
-* **Declaration**
-
-    ```c
+```c
 liot_datacall_errcode_e liot_datacall_get_default_pdn_info(uint8_t nSim, liot_data_call_default_pdn_info_s *ctx);
-    ```
+```
 
-* **Parameter**
+*   **Parameters**
 
 nSim:
 
-\[In\] Used  (U)SIM Card. IfModuleonly supports 1  (U)SIM Interface, This Parameter Canset to 0. Value: 0-1.
+\[In\] The (U)SIM card in use. If the module supports only 1 (U)SIM interface, this parameter can be set to 0. Value range: 0-1.
 
 ctx:
 
-\[Out\] Bearer information. See Section [4.5.1](https://alidocs.dingtalk.com/i/nodes/G53mjyd80p7vr7OLuXe1XXn586zbX04v?utm_scene=team_space&iframeQuery=anchorId%3Duu_m05cnmy998l0p2lsd1b) .
+\[Out\] Bearer information. See Section [3.5.1](#351-liot_data_call_default_pdn_info_s).
 
-* **Return Value**
+*   **Return Value**
 
-See Section [4.1.2](https://alidocs.dingtalk.com/i/nodes/G53mjyd80p7vr7OLuXe1XXn586zbX04v?utm_scene=team_space&iframeQuery=anchorId%3Duu_m05cnmy4qjcee3sytq4) .
+See Section [3.1.2](#312-liot_datacall_errcode_e).
 
-**3.5.1 liot\_data\_call\_default\_pdn\_info\_s**
+**3.5.1 liot\_data\_call\_default\_pdn\_info\_s**
 
-Authentication type.
+Default bearer information structure.
 
-* **Declaration**
+*   **Declaration**
 
-    ```c
+```c
 typedef struct{
-uint8_t ip_version;
-liot_ip4_addr_t ipv4;
-liot_ip6_addr_t ipv6;
-char apn_name[LIOT_APN_LEN_MAX];
+  uint8_t ip_version;
+  liot_ip4_addr_t ipv4;
+  liot_ip6_addr_t ipv6;
+  char apn_name[LIOT_APN_LEN_MAX];
 } liot_data_call_default_pdn_info_s;
-    ```
+```
 
-* **Parameter**
+*   **Parameters**
 
 | **Parameter** | **Type** | **Description** |
-    | --- | --- | --- |
-| ip\_version | uint8\_t | IP Type. <br>1    IP v4<br>2    IP v6<br>3    IP v4v6 |
-| ipv4 | struct liot\_ip4\_addr\_t | IP v4 Information. See Section [4.3.4](https://alidocs.dingtalk.com/i/nodes/G53mjyd80p7vr7OLuXe1XXn586zbX04v?utm_scene=team_space&iframeQuery=anchorId%3Duu_m05cnmy7rc13sv3enfs) . |
-| ipv6 | struct liot\_ip6\_addr\_t | IP v6 Information. See Section [4.3.7](https://alidocs.dingtalk.com/i/nodes/G53mjyd80p7vr7OLuXe1XXn586zbX04v?utm_scene=team_space&iframeQuery=anchorId%3Duu_m05cnmy8irk4wwc4jfg) . |
-| apn\_name | char | APN name, string, max length 64. |
+| --- | --- | --- |
+| ip\_version | uint8\_t | IP type.<br>1    IPv4<br>2    IPv6<br>3    IPv4v6 |
+| ipv4 | struct liot\_ip4\_addr\_t | IPv4 information. See Section [3.3.4](#334-liot_ip4_addr_t). |
+| ipv6 | struct liot\_ip6\_addr\_t | IPv6 information. See Section [3.3.7](#337-liot_ip6_addr_t). |
+| apn\_name | char | APN name, maximum string length is 64. |
 
-## 3.6 liot\_datacall\_get\_sim\_profile\_is\_active
+## 3.6 liot\_datacall\_get\_sim\_profile\_is\_active
 
-This function is used forGetCurrent PDP Context ActivateStatus.
+This function is used to get the current PDP context activation status.
 
-* **Declaration**
+*   **Declaration**
 
-    ```c
+```c
 bool liot_datacall_get_sim_profile_is_active(uint8_t nSim, int profile_idx);
-    ```
+```
 
-* **Parameter**
+*   **Parameters**
 
 nSim:
 
-\[In\] Used  (U)SIM Card. IfModuleonly supports 1  (U)SIM Interface, This Parameter Canset to 0. Value: 0-1.
+\[In\] The (U)SIM card in use. If the module supports only 1 (U)SIM interface, this parameter can be set to 0. Value range: 0-1.
 
 profile\_idx:
 
-\[In\] PDP Context ID, Range: 1~7.
+\[In\] PDP context ID. Range: 1~7.
 
-* **Return Value**
+*   **Return Value**
 
-true Activated, false Not activated.
+true: activated, false: not activated.
+## 3.7 liot\_stop\_data\_call
 
-## 3.7 liot\_stop\_data\_call
+This function is used to stop a data call. The default mode is synchronous. To use asynchronous mode, configure it via liot\_set\_data\_call\_asyn\_mode(). When the data call is stopped, all Socket connections depending on this CID will be forcibly closed.
 
-This function is used to stop data dial. default is sync mode, for async mode please use liot\_set\_data\_call\_asyn\_mode() to set. When stopping dial, all depending onThis cid   Socket Connectwill be forciblyDisable.
+*   **Declaration**
 
-* **Declaration**
-
-    ```c
+```c
 liot_datacall_errcode_e liot_stop_data_call(UINT8 nSim, INT32 profile_idx);
-    ```
+```
 
-* **Parameter**
+*   **Parameters**
 
 nSim:
 
-\[In\] Used  (U)SIM Card. IfModuleonly supports 1  (U)SIM Interface, This Parameter Canset to 0. Value: 0-1.
+\[In\] The (U)SIM card in use. If the module supports only 1 (U)SIM interface, this parameter can be set to 0. Value range: 0-1.
 
 profile\_idx:
 
-\[In\] PDP Context ID, Range: 1~7.
+\[In\] PDP context ID. Range: 1~7.
 
-* **Return Value**
+*   **Return Value**
 
-See Section [4.1.2](https://alidocs.dingtalk.com/i/nodes/G53mjyd80p7vr7OLuXe1XXn586zbX04v?utm_scene=team_space&iframeQuery=anchorId%3Duu_m05cnmy4qjcee3sytq4) .
+See Section [3.1.2](#312-liot_datacall_errcode_e).
 
-## 3.8 liot\_set\_data\_call\_asyn\_mode
+## 3.8 liot\_set\_data\_call\_asyn\_mode
 
-This function is used to set the execution mode of start and stop data dial functions(i.e. liot\_start\_data\_call() and liot\_stop\_data\_call()) Execution mode. Execution mode is divided into sync and async modes. mustin liot\_start\_data\_call beforeCall, to configure execution mode.
+This function is used to set the execution mode for start and stop data call functions (i.e., liot\_start\_data\_call() and liot\_stop\_data\_call()). The execution mode can be either synchronous or asynchronous. It must be called before liot\_start\_data\_call to configure the execution mode.
 
-* **Declaration**
+*   **Declaration**
 
-    ```c
+```c
 liot_datacall_errcode_e liot_set_data_call_asyn_mode(uint8_t nSim, int profile_idx, bool enable);
-    ```
+```
 
-* **Parameter**
+*   **Parameters**
 
 nSim:
 
-\[In\] Used  (U)SIM Card. IfModuleonly supports 1  (U)SIM Interface, This Parameter Canset to 0. Value: 0-1.
+\[In\] The (U)SIM card in use. If the module supports only 1 (U)SIM interface, this parameter can be set to 0. Value range: 0-1.
 
 profile\_idx:
 
-\[In\] PDP Context ID, Range: 1~7.
+\[In\] PDP context ID. Range: 1~7.
 
 enable:
 
-\[In\] FunctionExecution mode: 0 Syncmode, 1 Async Mode.
+\[In\] Function execution mode: 0 synchronous mode, 1 asynchronous mode.
 
-* **Return Value**
+*   **Return Value**
 
-See Section [4.1.2](https://alidocs.dingtalk.com/i/nodes/G53mjyd80p7vr7OLuXe1XXn586zbX04v?utm_scene=team_space&iframeQuery=anchorId%3Duu_m05cnmy4qjcee3sytq4) .
+See Section [3.1.2](#312-liot_datacall_errcode_e).
 
-## 3.9 liot\_network\_register\_wait
+## 3.9 liot\_network\_register\_wait
 
-This function is used to wait for network registration. Network registration is automatically completed after boot , only after successful registration, can perform data dial. If currently not registered to network, will block the thread calling this function, until network registration succeeds or times out then exits.
+This function is used to wait for the network registration result. Network registration is automatically completed after power-on. Only after successful registration can a data call be initiated. If the network is not currently registered, it will block the thread calling this function until network registration succeeds or times out.
 
-This function belongs to sync function, will wait for network registration within timeout time and return after success, If timeout reached and still not registered to network, returns registration failure. Suggest calling this interface in a separate thread.
+This is a synchronous function that waits for successful network registration within the timeout period. If the network is not registered when the timeout expires, it returns registration failure. It is recommended to call this interface in a separate thread.
 
-* **Declaration**
+*   **Declaration**
 
-    ```c
+```c
 liot_datacall_errcode_e liot_network_register_wait(uint8_t nSim, unsigned int timeout_s);
-    ```
+```
 
-* **Parameter**
+*   **Parameters**
 
 nSim:
 
-\[In\] Used  (U)SIM Card. IfModuleonly supports 1  (U)SIM Interface, This Parameter Canset to 0. Value: 0-1.
+\[In\] The (U)SIM card in use. If the module supports only 1 (U)SIM interface, this parameter can be set to 0. Value range: 0-1.
 
 timeout\_s:
 
-\[In\] Wait time for network registration timeout. unit: seconds.
+\[In\] Timeout for waiting for network registration. Unit: seconds.
 
-* **Return Value**
+*   **Return Value**
 
-See Section [4.1.2](https://alidocs.dingtalk.com/i/nodes/G53mjyd80p7vr7OLuXe1XXn586zbX04v?utm_scene=team_space&iframeQuery=anchorId%3Duu_m05cnmy4qjcee3sytq4).
+See Section [3.1.2](#312-liot_datacall_errcode_e).
+## 3.10 liot\_datacall\_set\_nat
 
-## 3.10 liot\_datacall\_set\_nat
+This function is used to enable the NAT function. The configuration takes effect after module restart. NAT is typically enabled only when the module is used as an RNDIS/ECM network adapter.
 
-This function is used forEnable NAT Function. Configuration takes effect after module restart. NATFunctionusuallyinModuleasto RNDIS/ECM network card usageonly whenwillEnable.
+*   **Declaration**
 
-* **Declaration**
-
-    ```c
+```c
 liot_datacall_errcode_e liot_datacall_set_nat(uint8_t nSim, UINT32 natmode);
-    ```
+```
 
-* **Parameter**
+*   **Parameters**
 
 nSim:
 
-\[In\] Used  (U)SIM Card. IfModuleonly supports 1  (U)SIM Interface, This Parameter Canset to 0. Value: 0-1.
+\[In\] The (U)SIM card in use. If the module supports only 1 (U)SIM interface, this parameter can be set to 0. Value range: 0-1.
 
 natmode:
 
-\[In\] NAT mode: 0 Enable, 1 Disable.
+\[In\] NAT mode: 0 enable, 1 disable.
 
-* **Return Value**
+*   **Return Value**
 
-See Section [4.1.2](https://alidocs.dingtalk.com/i/nodes/G53mjyd80p7vr7OLuXe1XXn586zbX04v?utm_scene=team_space&iframeQuery=anchorId%3Duu_m05cnmy4qjcee3sytq4) .
+See Section [3.1.2](#312-liot_datacall_errcode_e).
 
-## 3.11 liot\_datacall\_get\_nat
+## 3.11 liot\_datacall\_get\_nat
 
-This function is used forQuery (U)SIM Card Corresponding  NAT mode.
+This function is used to query the NAT mode for the (U)SIM card.
 
-* **Function**
+*   **Function**
 
-    ```c
+```c
 liot_datacall_errcode_e liot_datacall_get_nat(uint8_t nSim, UINT32 *natmode);
-    ```
+```
 
-* **Parameter**
+*   **Parameters**
 
 nSim:
 
-\[In\] Used  (U)SIM Card. IfModuleonly supports 1  (U)SIM Interface, This Parameter Canset to 0. Value: 0-1.
+\[In\] The (U)SIM card in use. If the module supports only 1 (U)SIM interface, this parameter can be set to 0. Value range: 0-1.
 
 natmode:
 
-\[Out\] NAT mode: 0 Enable, 1 Disable.
+\[Out\] NAT mode: 0 enabled, 1 disabled.
 
-* **Return Value**
+*   **Return Value**
 
-See Section [4.1.2](https://alidocs.dingtalk.com/i/nodes/G53mjyd80p7vr7OLuXe1XXn586zbX04v?utm_scene=team_space&iframeQuery=anchorId%3Duu_m05cnmy4qjcee3sytq4) .
+See Section [3.1.2](#312-liot_datacall_errcode_e).
 
-## 3.12 liot\_ip4addr\_ntoa
+## 3.12 liot\_ip4addr\_ntoa
 
-This function is used for IP V4 Address to String, The purpose is to convert binary IP address to user-readable string.
+This function converts an IPv4 address to a string, converting a binary IP address to a human-readable string.
 
-* **Function**
+*   **Function**
 
-    ```c
+```c
 CHAR *liot_ip4addr_ntoa(liot_ip4_addr_t *addr);
-    ```
+```
 
-* **Parameter**
+*   **Parameters**
 
 addr:
 
-\[In\] IP V4 AddressPointer. See Section [4.3.4](https://alidocs.dingtalk.com/i/nodes/G53mjyd80p7vr7OLuXe1XXn586zbX04v?utm_scene=team_space&iframeQuery=anchorId%3Duu_m05cnmy7rc13sv3enfs) .
+\[In\] Pointer to IPv4 address. See Section [3.3.4](#334-liot_ip4_addr_t).
 
-* **Return Value**
+*   **Return Value**
 
 String.
 
-## 3.13 liot\_ip6addr\_ntoa
+## 3.13 liot\_ip6addr\_ntoa
 
-This function is used for IP V6 Address to String, The purpose is to convert binary IP address to user-readable string.
+This function converts an IPv6 address to a string, converting a binary IP address to a human-readable string.
 
-* **Function**
+*   **Function**
 
-    ```c
+```c
 CHAR *liot_ip6addr_ntoa(liot_ip6_addr_t *addr);
-    ```
+```
 
-* **Parameter**
+*   **Parameters**
 
 addr:
 
-\[In\] IP V6 AddressPointer. See Section [4.3.7](https://alidocs.dingtalk.com/i/nodes/G53mjyd80p7vr7OLuXe1XXn586zbX04v?utm_scene=team_space&iframeQuery=anchorId%3Duu_m05cnmy8irk4wwc4jfg) .
+\[In\] Pointer to IPv6 address. See Section [3.3.7](#337-liot_ip6_addr_t).
 
-* **Return Value**
+*   **Return Value**
 
 String.
+## 3.14 liot\_ip4addr\_aton
 
-## 3.14 liot\_ip4addr\_aton
+This function converts an IPv4 string to an address, converting a human-readable IPv4 address string to the binary format required for network programming.
 
-This function is used for IP V4 String to Address, Converts user-readable  IP v4 Address string to binary format required for network programming binary format.
+*   **Function**
 
-* **Function**
-
-    ```c
+```c
 BOOL liot_ip4addr_aton(CHAR *cp, liot_ip4_addr_t *addr);
-    ```
+```
 
-* **Parameter**
+*   **Parameters**
 
 cp:
 
-\[In\] IP V4 String.
+\[In\] IPv4 string.
 
 addr:
 
-\[Out\] IP V4 AddressPointer. See Section [4.3.4](https://alidocs.dingtalk.com/i/nodes/G53mjyd80p7vr7OLuXe1XXn586zbX04v?utm_scene=team_space&iframeQuery=anchorId%3Duu_m05cnmy7rc13sv3enfs).
+\[Out\] Pointer to IPv4 address. See Section [3.3.4](#334-liot_ip4_addr_t).
 
-* **Return Value**
+*   **Return Value**
 
-true Success, false Failure.
+true: success, false: failure.
 
-## 3.15 liot\_ip6addr\_aton
+## 3.15 liot\_ip6addr\_aton
 
-This function is used for IP V6 String to Address, Converts user-readable  IP v6 Address string to binary format required for network programming binary format.
+This function converts an IPv6 string to an address, converting a human-readable IPv6 address string to the binary format required for network programming.
 
-* **Function**
+*   **Function**
 
-    ```c
+```c
 BOOL liot_ip6addr_aton(CHAR *cp, liot_ip6_addr_t *addr);
-    ```
+```
 
-* **Parameter**
+*   **Parameters**
 
-cp: \[In\] IP V6 String.
+cp: \[In\] IPv6 string.
 
-addr: \[Out\] Pointer to converted IPv6 address.
+addr: \[Out\] Pointer to converted IPv6 address.
 
-* **Return Value**
+*   **Return Value**
 
-See Section [4.1.2](https://lierda.feishu.cn/docx/VB8ndMgiAotqJ3xjEgicmMpanud?contentTheme=DARK&amp;theme=LIGHT#ARm3dgj7bohdakxsTugccXUkn1c) .
+true: success, false: failure.
 
-## 3.16 liot\_network\_register\_cereg\_get
+## 3.16 liot\_network\_register\_cereg\_get
 
-This function is used to get network registration status. Equivalent to underlying CEREG (Cellular Register) Status QueryInterface Return.
+This function is used to get the network registration status. It is equivalent to the return value of the underlying CEREG (Cellular Register) status query interface.
 
-* **Function**
+*   **Function**
 
-    ```c
+```c
 liot_datacall_errcode_e liot_network_register_cereg_get(uint8_t nSim);
-    ```
+```
 
-* **Parameter**
+*   **Parameters**
 
 nSim:
 
-\[In\] Used (U)SIM Card, IfModuleonly supports 1 (U)SIM Interface, This Parameter Canset to 0, value: 0-1 or 0xFF.
+\[In\] The (U)SIM card in use. If the module supports only 1 (U)SIM interface, this parameter can be set to 0. Value range: 0-1 or 0xFF.
 
-* **Return Value**
+*   **Return Value**
 
-See Section [4.1.2](https://alidocs.dingtalk.com/i/nodes/G53mjyd80p7vr7OLuXe1XXn586zbX04v?utm_scene=team_space&iframeQuery=anchorId%3Duu_m05cnmy4qjcee3sytq4) .
+See Section [3.1.2](#312-liot_datacall_errcode_e).
+## 3.17 Liot\_PsEventCb
 
-## 3.17 Liot\_PsEventCb
+This function registers a callback to receive system network registration, data call, and OOS events.
 
-This function registers callback function, Get system network registration, Dial, OOS event.
+Liot\_PsEventCb is used to monitor overall network status (registration, OOS), while liot\_datacall\_register\_cb focuses on asynchronous response events after the dial interface is invoked.
 
-Liot\_PsEventCb Used for monitoring overall network status(network registration, OOS), while liot\_datacall\_register\_cb focuses on async response events after dial interface initiation.
+*   **Function**
 
-* **Function**
-
-    ```c
+```c
 liot_datacall_errcode_e Liot_PsEventCb(Liot_PsEventCallback_t callback);
-    ```
+```
 
-* **Parameter**
+*   **Parameters**
 
 callback:
 
-\[In\] User registered event notification callback, When network registration occurs, Dial, OOS event will trigger notification.
+\[In\] User-registered event notification callback. Notifications are sent when network registration, data call, or OOS events occur.
 
-* **Return Value**
+*   **Return Value**
 
-See Section [4.1.2](https://alidocs.dingtalk.com/i/nodes/G53mjyd80p7vr7OLuXe1XXn586zbX04v?utm_scene=team_space&iframeQuery=anchorId%3Duu_m05cnmy4qjcee3sytq4) .
+See Section [3.1.2](#312-liot_datacall_errcode_e).
 
-### 3.17.1 Liot\_PsEventCallback\_t
+### 3.17.1 Liot\_PsEventCallback\_t
 
-This callback function is used to report network registration, Dial, OOS events.
+This callback function reports network registration, data call, and OOS events.
 
-* **Declaration**
+*   **Declaration**
 
-| ```c<br>typedef void (*Liot_PsEventCallback_t)(Liot_PsEvent_e eventId, void *param, UINT32 paramLen);<br>``` |
-    | --- |
+| ```c
+typedef void (*Liot_PsEventCallback_t)(Liot_PsEvent_e eventId, void *param, UINT32 paramLen);
+``` |
+| --- |
 
-* **Parameter**
+*   **Parameters**
 
 eventId:
 
-\[In\] NotificationEventID.
+\[In\] Notification event ID.
 
 | **Event** | **Description** |
-    | --- | --- |
-| LIOT\_PS\_EVENT\_BEARER\_ACTED | Network RegistrationSuccess |
-| LIOT\_PS\_EVENT\_BEARER\_DEACTED | Network RegistrationFailure |
-| LIOT\_PS\_EVENT\_NETIF\_OOS | Noneservice(Out of Service) |
-| LIOT\_PS\_EVENT\_NETIF\_ACTIVAT ED | NetworkInterfaceattachment success |
-| LIOT\_PS\_EVENT\_NETIF\_DEACTIVAT ED | NetworkInterfaceattachmentFailure |
-| LIOT\_PS\_EVENT\_MAX | Enumeration maximum(used for boundaryCheck) |
+| --- | --- |
+| LIOT\_PS\_EVENT\_BEARER\_ACTED | Network registration successful |
+| LIOT\_PS\_EVENT\_BEARER\_DEACTED | Network registration failed |
+| LIOT\_PS\_EVENT\_NETIF\_OOS | Out of Service |
+| LIOT\_PS\_EVENT\_NETIF\_ACTIVATED | Network interface attach successful |
+| LIOT\_PS\_EVENT\_NETIF\_DEACTIVATED | Network interface attach failed |
+| LIOT\_PS\_EVENT\_MAX | Maximum enum value (for boundary check) |
 
 param:
 
-\[In\] Callback function event corresponding parameter, not used yet.
+\[In\] Parameter corresponding to the callback event. Currently unused.
 
 paramLen:
 
-\[In\] Callback function event corresponding parameter length, not used yet.
+\[In\] Length of the parameter corresponding to the callback event. Currently unused.
+## 3.18 Liot\_DataCallCfgDefaultEpsBearer
 
-## 3.18 Liot\_DataCallCfgDefaultEpsBearer
+This function sets or queries the APN and IP type of the default bearer (CID 1).
 
-ThisFunctionSetorQueryDefault Bearer(CID 1)  APN and IP Type.
+*   **Function**
 
-* **Function**
-
-    ```c
+```c
 liot_datacall_errcode_e Liot_DataCallCfgDefaultEpsBearer(Liot_DataCallCFG_t *cfg);
-    ```
+```
 
-* **Parameter**
+*   **Parameters**
 
 cfg:
 
-\[In\] Configuration structure.
+\[In\] Configuration structure.
 
-* **Return Value**
+*   **Return Value**
 
-See Section [4.1.2](https://alidocs.dingtalk.com/i/nodes/G53mjyd80p7vr7OLuXe1XXn586zbX04v?utm_scene=team_space&iframeQuery=anchorId%3Duu_m05cnmy4qjcee3sytq4) .
+See Section [3.1.2](#312-liot_datacall_errcode_e).
 
-**3.18.1 Liot\_DataCallCFG\_t**
+**3.18.1 Liot\_DataCallCFG\_t**
 
-Configure default bearer structure.
+Default bearer configuration structure.
 
-* **Declaration**
+*   **Declaration**
 
-    ```c
+```c
 typedef struct
 {
-Liot_DataCallMethod_e method; ///< Operation method: Set or query configuration
-Liot_DataCallIpType_e ip_version; ///< IP Type
-char apn[LIOT_APN_LEN_MAX]; ///< APN String
-uint16_t apn_len; ///< APN string actual length
+    Liot_DataCallMethod_e method;       ///< Operation method: set or query configuration
+    Liot_DataCallIpType_e ip_version;   ///< IP type
+    char apn[LIOT_APN_LEN_MAX];         ///< APN string
+    uint16_t apn_len;                   ///< Actual length of APN string
 } Liot_DataCallCFG_t;
-    ```
+```
 
-* **Parameter**
+*   **Parameters**
 
 | **Type** | **Parameter** | **Description** |
-    | --- | --- | --- |
-| Liot\_DataCallMethod\_e | method | Operation method: Set or query configuration |
-| Liot\_DataCallIpType\_e | ip\_version | SetorQuery  IP Type(V4/V6/IP V4V6) |
-| char | apn | APN, max 100 bytes |
-| uint16\_t | apn\_len | APN String actualLength |
+| --- | --- | --- |
+| Liot\_DataCallMethod\_e | method | Operation method: set or query configuration |
+| Liot\_DataCallIpType\_e | ip\_version | IP type to set or query (V4/V6/IPV4V6) |
+| char | apn | APN, maximum 100 bytes |
+| uint16\_t | apn\_len | Actual length of APN string |
 
-**3.18.2 Liot\_DataCallMethod\_e**
+**3.18.2 Liot\_DataCallMethod\_e**
 
-Operation method enumeration definition: Set or query configuration.
+Operation method enum: set or query configuration.
 
-* **Declaration**
+*   **Declaration**
 
-    ```c
+```c
 typedef enum
 {
-LIOT_DAT ACALL_APN_SET, ///< Set APN configure
-LIOT_DAT ACALL_APN_GET, ///< Query APN configure
-LIOT_DAT ACALL_APN_MAX ///< Maximum value(Used forboundaryCheck)
+    LIOT_DATACALL_APN_SET,  ///< Set APN configuration
+    LIOT_DATACALL_APN_GET,  ///< Query APN configuration
+    LIOT_DATACALL_APN_MAX   ///< Maximum value (for boundary check)
 } Liot_DataCallMethod_e;
-    ```
+```
 
-* **Parameter**
-
-| **Enum Value** | **Description** |
-    | --- | --- |
-| LIOT\_DAT ACALL\_APN\_SET | Set APN configure |
-| LIOT\_DAT ACALL\_APN\_GET | Query APN configure |
-| LIOT\_DAT ACALL\_APN\_MAX | Maximum value(Used forboundaryCheck) |
-
-**3.18.3 Liot\_DataCallIpType\_e**
-
-Definition IP Type Enumeration.
-
-* **Declaration**
-
-    ```c
-typedef enum
-{
-LIOT_PS_PDN_TYPE_IP_V4 = 1, ///< IP v4 Type
-LIOT_PS_PDN_TYPE_IP_V6, ///< IP v6 Type
-LIOT_PS_PDN_TYPE_IP_V4V6, ///< IPv4/IPv6 dual stack type
-LIOT_PS_PDN_TYPE_NUM ///< IP type count (used for counting)
-} Liot_DataCallIpType_e;
-    ```
-
-* **Parameter**
-
+*   **Parameters**
 
 | **Enum Value** | **Description** |
 | --- | --- |
-| LIOT\_PS\_PDN\_TYPE\_IP\_V4 | IP v4 Type |
-| LIOT\_PS\_PDN\_TYPE\_IP\_V6 | IP v6 Type |
-| LIOT\_PS\_PDN\_TYPE\_IP\_V4V6 | IP v4/IP v6 dual stackType |
-| LIOT\_PS\_PDN\_TYPE\_NUM | IP TypeCount(used for counting) |
+| LIOT\_DATACALL\_APN\_SET | Set APN configuration |
+| LIOT\_DATACALL\_APN\_GET | Query APN configuration |
+| LIOT\_DATACALL\_APN\_MAX | Maximum value (for boundary check) |
+**3.18.3 Liot\_DataCallIpType\_e**
 
-## 4 CodeExample
+IP type enum definition.
 
-Example code reference \PLAT\project\ec7xx\_0h00\ap\apps\lierda\_app\lierda\_examples\liot\_datacall\_demo.c File. As follows run result describes getting all information normally:
+*   **Declaration**
 
-* Syncmode
+```c
+typedef enum
+{
+    LIOT_PS_PDN_TYPE_IP_V4 = 1,  ///< IPv4 type
+    LIOT_PS_PDN_TYPE_IP_V6,      ///< IPv6 type
+    LIOT_PS_PDN_TYPE_IP_V4V6,    ///< IPv4/IPv6 dual-stack type
+    LIOT_PS_PDN_TYPE_NUM         ///< IP type count (used as counter)
+} Liot_DataCallIpType_e;
+```
 
-![Drawing 0](https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/eYVOLwj1Zprmqpz2/img/98ee7ad6-fb9b-4617-b544-230d4b5fad5b.jpeg)
+*   **Parameters**
 
-* Async Mode
+| **Enum Value** | **Description** |
+| --- | --- |
+| LIOT\_PS\_PDN\_TYPE\_IP\_V4 | IPv4 type |
+| LIOT\_PS\_PDN\_TYPE\_IP\_V6 | IPv6 type |
+| LIOT\_PS\_PDN\_TYPE\_IP\_V4V6 | IPv4/IPv6 dual-stack type |
+| LIOT\_PS\_PDN\_TYPE\_NUM | IP type count (used as counter) |
 
+## 4 Code Examples
 
-![Drawing 1](https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/eYVOLwj1Zprmqpz2/img/2f04f629-2060-46cb-a061-655f04e2999e.jpeg)
+Example code can be found in the file \PLAT\project\ec7xx\_0h00\ap\apps\lierda\_app\lierda\_examples\liot\_datacall\_demo.c. The following results indicate that all information was obtained successfully:
 
-## 5 Terminology
+*   Synchronous mode
 
-* **PDN Context**: Packet Data Network Context  is Moduleand operatorNetworkestablishdatachannel logical entity.
+    ![image_1](../../zh_CN/components/_images/数据拨号开发指导/image_1.png)
 
-* **CID**: profile\_idx (CID)  is Thischannel  ID, Rangeusuallyto 1-7.  CID  is all subsequentNetworkoperation(DNS, Socket), identifier needed, User identifies through which to establish data business.
+*   Asynchronous mode
 
-* **APN**: Access Point Name  is operatorNetwork access point. it is Activate PDN Context  keyParameter. Ensure APN namecorrect.
+    ![image_2](../../zh_CN/components/_images/数据拨号开发指导/image_2.png)
+
+## 5 Glossary
+
+*   **PDN Context**: Packet Data Network Context is the logical entity for establishing a data channel between the module and the carrier network.
+
+*   **CID**: profile\_idx (CID) is the ID of that channel, typically ranging from 1-7. CID is the identifier required for all subsequent network operations (DNS, Socket), used to identify which channel establishes the data service.
+
+*   **APN**: Access Point Name is the access point of the carrier network. It is a key parameter for activating a PDN Context. Ensure the APN name is correct.

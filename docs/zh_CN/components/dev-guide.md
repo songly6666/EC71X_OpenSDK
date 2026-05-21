@@ -38,7 +38,7 @@
     
     其工作原理可以通过以下几个步骤来说明：
     
-    ![deepseek_mermaid_20260227_15da4d.png](https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/Pd6l2Z7Jm238ml7M/img/aa7361b2-50c0-493e-83b4-3753181b0f37.png)
+    ![image_1](_images/设备管理开发指导/image_1.png)
     
 2.  RRC快速释放的应用意义
     
@@ -919,7 +919,7 @@ liot_errcode_dev_e Liot_DevGetHardWareInfo(const char*hdversion, uint16_t len);
 
 1.  示例代码参考  PLAT\project\ec7xx\_0h00\ap\apps\lierda\_app\lierda\_examples\liot\_dev\_demo.c 文件。如下运行结果说明获取所有信息正常：
     
-    ![Drawing 0](https://alidocs.oss-cn-zhangjiakou.aliyuncs.com/res/AJdl64ABjM6Pqke1/img/bc96b132-e2e3-48af-9181-be9c548a4628.png)
+    ![image_2](_images/设备管理开发指导/image_2.png)
     
 2.  CFUN 设置与查询示例
     

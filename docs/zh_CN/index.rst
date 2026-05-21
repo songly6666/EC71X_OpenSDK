@@ -280,7 +280,7 @@ NT26F6C0 支持 -40℃~+85℃ 工业级宽温范围和 2.3V~4.5V 超宽电压输
      - `快速入门`_
 
 .. _SDK 介绍: general/index.html
-.. _API 指南: software/api-overview.html
+.. _API 指南: components/api-overview.html
 .. _快速入门: general/quick-start.html
 
 .. only:: latex
@@ -295,7 +295,6 @@ NT26F6C0 支持 -40℃~+85℃ 工业级宽温范围和 2.3V~4.5V 超宽电压输
 
    general/index
    hardware/index
-   software/index
    components/index
    tools/index
    examples/index
