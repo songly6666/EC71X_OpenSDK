@@ -18,7 +18,7 @@
 
 ## 1 Introduction
 
-This document describes the NT26 series ADC interface APIs, which are declared in the `PLAT\middleware\lierda_open\lierda_api\liot_platform\inc\liot_adc.h` file.
+This document describes the NT26 series ADC interface APIs, which are declared in the `components/kernel/lierda_api/liot_adc/liot_adc.h` file.
 
 ### 1.1 Module ADC Resource Overview
 
@@ -248,7 +248,7 @@ Return value:
 
 ## 5 Code Example
 
-Example code can be found in the `PLAT\project\ec7xx_0h00\ap\apps\lierda_app\lierda_examples\liot_adc_demo.c` file.
+Example code can be found in the `examples/demo/src/demo_adc.c` file.
 
 Running result:
 

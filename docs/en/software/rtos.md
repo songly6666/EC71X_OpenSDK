@@ -15,7 +15,7 @@
 
 ## 1 Introduction
 
-This document describes the LTE-EC71X RTOS API information. The API declarations are located in `LSDK\components\kernel\lierda_api\liot_os\liot_os.h`.
+This document describes the LTE-EC71X RTOS API information. The API declarations are located in `components/kernel/lierda_api/liot_os/liot_os.h`.
 
 ### 1.1 RTOS Core Architecture
 
@@ -52,7 +52,7 @@ The RTOS software stack uses a layered design. From bottom to top it consists of
 
 ##### 1.1.2.1 Platform Adaptation Layer: Customized FreeRTOS Kernel
 
-* Location: `PLAT/os/freertos/`
+* Location: `components/thirdparty/freertos`
 * Baseline version: FreeRTOS Kernel V9.0.0a
 * Customization goal: deeply adapt to the hardware features and system resource constraints of the Yixin EC CAT1 series chips.
 
@@ -75,7 +75,7 @@ Major changes:
 
 ##### 1.1.2.2 Application Abstraction Layer: Lierda Wrapper Interface
 
-* Location: `PLAT/middleware/lierda_open/lierda_api/liot_os/`
+* Location: `components/kernel/lierda_api/liot_os`
 * Design goal: provide terminal developers a standardized, type-safe, easy-to-integrate OS abstraction layer.
 
 Core features:
@@ -1880,7 +1880,7 @@ Generated random number.
 
 This example demonstrates comprehensive RTOS API usage, including tasks, semaphores, message queues, timers, and event groups.
 
-Example source location: `PLAT/project/ec7xx_0h00/ap/apps/lierda_app/lierda_examples/liot_os_demo.c`
+Example source location: `examples/demo/src/demo_os.c`
 
 #### 5.1.1 Example Description
 

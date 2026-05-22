@@ -17,7 +17,7 @@
 
 ## 1简介
 
-本文档介绍 LTE-EC71X 平台的 TTS（Text-to-Speech，文本转语音）接口 API 情况。API 接口声明位于 `LSDK/components/kernel/lierda_api/liot_tts/liot_tts.h` 文件中。
+本文档介绍 LTE-EC71X 平台的 TTS（Text-to-Speech，文本转语音）接口 API 情况。API 接口声明位于 `components/kernel/lierda_api/liot_tts/liot_tts.h` 文件中。
 
 ### 1.1 默认 Demo 配置
 
@@ -38,7 +38,7 @@ SDK 支持范围：SDK 支持多种采样率和语言组合，包括：
 
 ### 1.2 资源文件说明
 
-资源文件格式：当前 SDK 中 TTS 资源文件为 `.bin` 格式，存放于 `LSDK/components/tts/` 目录下。不同采样率和语言对应的资源文件如下：
+资源文件格式：当前 SDK 中 TTS 资源文件为 `.bin` 格式，存放于 `components/tts/` 目录下。不同采样率和语言对应的资源文件如下：
 
 | 资源文件名 | 采样率/语言 | 大小（约） |
 | ---- | ---- | ---- |
@@ -55,7 +55,7 @@ SDK 支持范围：SDK 支持多种采样率和语言组合，包括：
 
 #### 步骤 1：使能 TTS 组件编译
 
-打开 `LSDK/rules/Makefile.defs` 文件，将 `BUILD_COMP_TTS_EN` 设置为 `y`：
+打开 `rules/Makefile.defs` 文件，将 `BUILD_COMP_TTS_EN` 设置为 `y`：
 
 ```makefile
 BUILD_COMP_TTS_EN ?= y
@@ -78,7 +78,7 @@ TTS_RESOURCE_TYPE ?= 8kzh
 
 #### 步骤 3：使能 TTS Demo（可选）
 
-如需编译运行 TTS Demo，打开 `LSDK/examples/demo/config`，将 `EXDEMO_TTS_EN` 设置为 `y`：
+如需编译运行 TTS Demo，打开 `examples/demo/config`，将 `EXDEMO_TTS_EN` 设置为 `y`：
 
 ```makefile
 EXDEMO_TTS_EN ?= y
@@ -456,7 +456,7 @@ void liot_utf8_to_gbk_str(void *utf8, int inputlen, int *outputlen, void *gbk);
 
 当前 SDK 中，使用 16K 采样率库的方法非常简单，只需修改资源类型配置即可，底层会自动完成库文件适配，无需手动替换库文件。
 
-1. 打开 `LSDK/rules/Makefile.defs` 文件。
+1. 打开 `rules/Makefile.defs` 文件。
 2. 将修改为需要的 16K 类型，例如使用 16K 中文：
 
 ```makefile
@@ -469,7 +469,7 @@ TTS_RESOURCE_TYPE ?= 16kzh     #可选值包括：8kzh（默认）、16kzh、8ke
 
 ## 7 快速上手指南
 
-本节根据 `LSDK/examples/demo/src/demo_tts.c` 提供 TTS 功能的快速入门指导。
+本节根据 `examples/demo/src/demo_tts.c` 提供 TTS 功能的快速入门指导。
 
 ### 7.1 硬件准备
 
@@ -482,20 +482,20 @@ TTS_RESOURCE_TYPE ?= 16kzh     #可选值包括：8kzh（默认）、16kzh、8ke
 
 ### 7.2 软件配置
 
-1. 在 `LSDK/rules/Makefile.defs` 中使能 TTS：
+1. 在 `rules/Makefile.defs` 中使能 TTS：
 
 ```makefile
 BUILD_COMP_TTS_EN ?= y
 TTS_RESOURCE_TYPE ?= 8kzh
 ```
 
-2. 在 `LSDK/examples/demo/config` 中使能 TTS Demo：
+2. 在 `examples/demo/config` 中使能 TTS Demo：
 
 ```makefile
 EXDEMO_TTS_EN ?= y
 ```
 
-3. 在 `LSDK/examples/Makefile` 中控制编译 Demo：
+3. 在 `examples/Makefile` 中控制编译 Demo：
 
 ```makefile
 PROJECT ?= demo

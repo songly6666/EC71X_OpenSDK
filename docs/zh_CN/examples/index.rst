@@ -9,6 +9,9 @@
    :maxdepth: 1
    :titlesonly:
 
+   L-CT4IT00-YP00W-01_V04/L-CT4IT00-YP00W-01_V04_quick_start
+   XiaoDa/XiaoDa Application Guide_Rev0.1
+
+.. commented out:
    Ai_demo/Ai_demo
    Wechat_demo/Wechat_demo
-   XiaoDa/XiaoDa Application Guide_Rev0.1

@@ -399,7 +399,7 @@ uint32_t Liot_UartSend(liot_uart_e port, unsigned char *data, unsigned int data_
 
 ### 6.1 Quick Start Flow
 
-The basic steps to use the UART API are shown below, using the example `LSDK/examples/demo/src/demo_uart2.c` as a reference.
+The basic steps to use the UART API are shown below, using the example `examples/demo/src/demo_uart2.c` as a reference.
 
 Step 1 — Define a receive callback:
 
@@ -451,7 +451,7 @@ Liot_UartDeinit(L_USBCOM);
 
 ### 6.2 Full Example
 
-The following example is adapted from `LSDK/examples/demo/src/demo_uart2.c`. It initializes multiple UART ports and periodically sends test strings.
+The following example is adapted from `examples/demo/src/demo_uart2.c`. It initializes multiple UART ports and periodically sends test strings.
 
 ```c
 #include "liot_uart2.h"

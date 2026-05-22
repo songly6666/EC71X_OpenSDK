@@ -18,7 +18,7 @@
 
 ## 1 引言
 
-本文档介绍 NT26 系列 ADC 接口 API 情况，API 接口位于 `PLAT\middleware\lierda_open\lierda_api\liot_platform\inc\liot_adc.h` 文件声明。
+本文档介绍 NT26 系列 ADC 接口 API 情况，API 接口位于 `components/kernel/lierda_api/liot_adc/liot_adc.h` 文件声明。
 
 ### 1.1 模组ADC资源总览
 
@@ -248,7 +248,7 @@ liot_adc_errcode_e liot_adc_get_volt_raw(liot_adc_chan_id_e liot_adc_channel_id,
 
 ## 5 代码示例
 
-示例代码参考 `PLAT\project\ec7xx_0h00\ap\apps\lierda_app\lierda_examples\liot_adc_demo.c` 文件。
+示例代码参考 `examples/demo/src/demo_adc.c` 文件。
 
 运行结果：
 

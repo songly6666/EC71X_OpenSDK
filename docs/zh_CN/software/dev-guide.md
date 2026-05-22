@@ -16,7 +16,7 @@
 
 ## 1 简介
 
-本文档介绍 LTE-EC71X 设备管理 接口 API 情况， API 接口位于 PLAT/middleware/lierda\_open/lierda\_api/liot\_platform/inc/liot\_dev.h 文件声明。
+本文档介绍 LTE-EC71X 设备管理 接口 API 情况， API 接口位于 components/kernel/lierda_api/liot_dev/liot_dev.h 文件声明。
 
 ### 1.1 部分原理说明
 
@@ -917,7 +917,7 @@ liot_errcode_dev_e Liot_DevGetHardWareInfo(const char*hdversion, uint16_t len);
 
 ## 5 代码示例
 
-1.  示例代码参考  PLAT\project\ec7xx\_0h00\ap\apps\lierda\_app\lierda\_examples\liot\_dev\_demo.c 文件。如下运行结果说明获取所有信息正常：
+1.  示例代码参考  examples/demo/src/demo_dev.c 文件。如下运行结果说明获取所有信息正常：
     
     ![image_2](_images/设备管理开发指导/image_2.png)
     

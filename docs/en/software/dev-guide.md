@@ -16,7 +16,7 @@
 
 ## 1 Introduction
 
-This document introduces the LTE-EC71X device management interface APIs. The API interfaces are declared in the file PLAT/middleware/lierda_open/lierda_api/liot_platform/inc/liot_dev.h.
+This document introduces the LTE-EC71X device management interface APIs. The API interfaces are declared in the file components/kernel/lierda_api/liot_dev/liot_dev.h.
 
 ### 1.1 Principle Description
 
@@ -917,7 +917,7 @@ liot_errcode_dev_e Liot_DevGetHardWareInfo(const char*hdversion, uint16_t len);
 
 ## 5 Code Examples
 
-1.  Example code reference PLAT\project\ec7xx\_0h00\ap\apps\lierda\_app\lierda\_examples\liot\_dev\_demo.c file. The following running results indicate that all information is obtained normally:
+1.  Example code reference examples/demo/src/demo_dev.c file. The following running results indicate that all information is obtained normally:
     
     ![image_2](_images/设备管理开发指导/image_2.png)
     

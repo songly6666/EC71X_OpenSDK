@@ -15,7 +15,7 @@
 
 ## 1 简介
 
-本文档主要介绍 LTE-EC71X OpenCPU 数据拨号 API 函数详解，API 位于 `\PLAT\middleware\lierda_open\lierda_api\liot_nw\inc\liot_datacall.h` 文件。
+本文档主要介绍 LTE-EC71X OpenCPU 数据拨号 API 函数详解，API 位于 `components/kernel/lierda_api/liot_datacall/liot_datacall.h` 文件。
 
 
 - **网络注册：** liot_network_register_wait（网络注册）是开机后的自动动作，但是如果是专网卡，需要先配置APN，然后再控制开关设备实现网络注册。
@@ -944,7 +944,7 @@ typedef enum
 
 ## 4 代码示例
 
-示例代码参考 \PLAT\project\ec7xx\_0h00\ap\apps\lierda\_app\lierda\_examples\liot\_datacall\_demo.c 文件。如下运行结果则说明获取所有信息正常：
+示例代码参考 examples/demo/src/demo_datacall.c 文件。如下运行结果则说明获取所有信息正常：
 
 *   同步模式
     

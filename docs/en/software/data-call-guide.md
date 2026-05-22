@@ -15,7 +15,7 @@
 
 ## 1 Introduction
 
-This document provides a detailed description of the LTE-EC71X OpenCPU Data Call API functions. The API is located in the file `\PLAT\middleware\lierda_open\lierda_api\liot_nw\inc\liot_datacall.h`.
+This document provides a detailed description of the LTE-EC71X OpenCPU Data Call API functions. The API is located in the file `components/kernel/lierda_api/liot_datacall/liot_datacall.h`.
 
 
 - **Network Registration:** liot_network_register_wait (network registration) is an automatic action after power-on. However, for private network SIM cards, you need to configure the APN first, then control the device on/off to achieve network registration.
@@ -927,7 +927,7 @@ typedef enum
 
 ## 4 Code Examples
 
-Example code can be found in the file \PLAT\project\ec7xx\_0h00\ap\apps\lierda\_app\lierda\_examples\liot\_datacall\_demo.c. The following results indicate that all information was obtained successfully:
+Example code can be found in the file examples/demo/src/demo_datacall.c. The following results indicate that all information was obtained successfully:
 
 *   Synchronous mode
 

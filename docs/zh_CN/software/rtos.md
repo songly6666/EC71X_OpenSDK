@@ -15,7 +15,7 @@
 
 ## 1 引言
 
-本文档介绍 LTE-EC71X RTOS信息接口 API 情况， API 接口位于LSDK\components\kernel\lierda_api\liot_os\liot_os.h文件声明。
+本文档介绍 LTE-EC71X RTOS信息接口 API 情况， API 接口位于components/kernel/lierda_api/liot_os/liot_os.h文件声明。
 
 ### 1.1 RTOS 核心架构
 
@@ -48,7 +48,7 @@ RTOS 软件栈采用分层设计，自下而上依次为硬件适配层、内核
 
 ##### 1.1.2.1 平台适配层：FreeRTOS 内核定制
 
-* 位置：PLAT/os/freertos/ 目录
+* 位置：components/thirdparty/freertos 目录
 * 基线版本：FreeRTOS Kernel V9.0.0a
 * 定制目标：深度适配移芯 EC CAT1 系列芯片的硬件特性及系统资源约束。
 
@@ -68,7 +68,7 @@ RTOS 软件栈采用分层设计，自下而上依次为硬件适配层、内核
 
 ##### 1.1.2.2 应用抽象层：Lierda封装接口
 
-* 位置：PLAT\middleware\lierda_open\lierda_api\liot_os\目录
+* 位置：components/kernel/lierda_api/liot_os目录
 * 设计目标：为终端开发者提供一套标准化、类型安全且易于集成的操作系统抽象层。
 
 核心特性：
@@ -1879,7 +1879,7 @@ uint32 liot_true_rand(void);
 
 本示例展示了 RTOS API 的综合使用，包括任务创建、信号量、消息队列、定时器和事件组的使用。
 
-示例代码位置：PLAT/project/ec7xx_0h00/ap/apps/lierda_app/lierda_examples/liot_os_demo.c
+示例代码位置：examples/demo/src/demo_os.c
 
 #### 5.1.1 示例说明
 
