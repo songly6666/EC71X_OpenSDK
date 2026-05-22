@@ -298,4 +298,3 @@ NT26F6C0 支持 -40℃~+85℃ 工业级宽温范围和 2.3V~4.5V 超宽电压输
    software/index
    tools/index
    examples/index
-   about
