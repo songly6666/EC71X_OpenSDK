@@ -17,7 +17,7 @@
 
 ## 1 Introduction
 
-This document describes the TTS (Text-to-Speech) API for the LTE-EC71X platform. API declarations are located in `LSDK/components/kernel/lierda_api/liot_tts/liot_tts.h`.
+This document describes the TTS (Text-to-Speech) API for the LTE-EC71X platform. API declarations are located in `components/kernel/lierda_api/liot_tts/liot_tts.h`.
 
 ### 1.1 Default Demo Configuration
 
@@ -34,7 +34,7 @@ This document describes the TTS (Text-to-Speech) API for the LTE-EC71X platform.
 
 ### 1.2 Resource Files
 
-- Resource format: TTS resources are `.bin` files placed under `LSDK/components/tts/`.
+- Resource format: TTS resources are `.bin` files placed under `components/tts/`.
 - Example resource files and approximate sizes:
 
 | File | Sample rate / Language | Approx. Size |
@@ -52,7 +52,7 @@ To enable TTS and select resource types, perform these steps:
 
 Step 1 — Enable TTS component compilation:
 
-Edit `LSDK/rules/Makefile.defs` and set:
+Edit `rules/Makefile.defs` and set:
 
 ```makefile
 BUILD_COMP_TTS_EN ?= y
@@ -75,7 +75,7 @@ For 16 kHz Chinese, set `TTS_RESOURCE_TYPE ?= 16kzh`. The build system will pick
 
 Step 3 — (Optional) Enable TTS demo:
 
-In `LSDK/examples/demo/config` set:
+In `examples/demo/config` set:
 
 ```makefile
 EXDEMO_TTS_EN ?= y
@@ -329,7 +329,7 @@ Volume grows roughly 2x–3x when the setting increases by 10000; closer to extr
 
 ## 6 16k Library Usage
 
-To use 16k sample-rate resources, simply change the resource type in `LSDK/rules/Makefile.defs`:
+To use 16k sample-rate resources, simply change the resource type in `rules/Makefile.defs`:
 
 ```makefile
 TTS_RESOURCE_TYPE ?= 16kzh  # options: 8kzh (default), 16kzh, 8ken, 16ken
@@ -341,7 +341,7 @@ Note: When using 16k resources, ensure audio hardware configuration (e.g., `Liot
 
 ## 7 Quick Start
 
-This quick start is based on `LSDK/examples/demo/src/demo_tts.c`.
+This quick start is based on `examples/demo/src/demo_tts.c`.
 
 ### 7.1 Hardware Required
 
@@ -354,20 +354,20 @@ This quick start is based on `LSDK/examples/demo/src/demo_tts.c`.
 
 ### 7.2 Software Configuration
 
-1. Enable TTS in `LSDK/rules/Makefile.defs`:
+1. Enable TTS in `rules/Makefile.defs`:
 
 ```makefile
 BUILD_COMP_TTS_EN ?= y
 TTS_RESOURCE_TYPE ?= 8kzh
 ```
 
-2. Enable TTS demo in `LSDK/examples/demo/config`:
+2. Enable TTS demo in `examples/demo/config`:
 
 ```makefile
 EXDEMO_TTS_EN ?= y
 ```
 
-3. Ensure the demo project is selected in `LSDK/examples/Makefile`:
+3. Ensure the demo project is selected in `examples/Makefile`:
 
 ```makefile
 PROJECT ?= demo

@@ -402,7 +402,7 @@ uint32_t Liot_UartSend(liot_uart_e port, unsigned char *data, unsigned int data_
 
 ### 6.1 快速开发流程
 
-使用 UART API 进行串口通信的基本步骤如下，下面以 `LSDK/examples/demo/src/demo_uart2.c` 中的 demo 为例进行说明。
+使用 UART API 进行串口通信的基本步骤如下，下面以 `examples/demo/src/demo_uart2.c` 中的 demo 为例进行说明。
 
 **步骤 1：** 定义接收回调函数
 
@@ -456,7 +456,7 @@ Liot_UartDeinit(L_USBCOM);
 
 ### 6.2 完整示例
 
-以下代码位于 `LSDK/examples/demo/src/demo_uart2.c`，演示了如何初始化多个 UART 端口并在循环中定时发送数据。
+以下代码位于 `examples/demo/src/demo_uart2.c`，演示了如何初始化多个 UART 端口并在循环中定时发送数据。
 
 ```c
 #include "liot_uart2.h"
