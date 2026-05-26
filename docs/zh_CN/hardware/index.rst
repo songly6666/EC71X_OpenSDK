@@ -58,21 +58,6 @@ NT26-FCN C系列
    * - 原理图/PCB 封装/三维模型
      - :download:`NT26FCNC00WNA_V01(0914).step <./NT26FCN-C-Series/NT26FCNC00WNA_V01_0914.step>`
 
-开发板 & 配件板资料
-============================
-
-.. list-table::
-   :header-rows: 1
-   :widths: 35 65
-
-   * - 资料简介
-     - 相关链接
-   * - NT26F6D0 系列 PICO
-     - | ``NT26F6D0系列PICO板原理图.pdf``
-       | ``系列模组核心板使用说明.pdf``
-   * - NT26F6D0 系列多媒体板
-     - | ``NT26F6D0系列多媒体板.pdf``
-       | ``系列多媒体板.pdf``
 
 引脚复用表
 ============================
@@ -91,3 +76,4 @@ NT26-FCN C系列
 .. toctree::
    :maxdepth: 1
    :titlesonly:
+docs: 删除硬件文档中的开发板与配件板资料部分
